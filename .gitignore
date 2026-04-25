@@ -1,0 +1,13 @@
+/*
+!/.gitignore
+!/index.html
+!/archive.html
+!/digests
+!/transcripts
+!/transcripts/**
+!/digests/**
+!/podcasts
+!/podcasts/**
+!/artwork
+!/artwork/**
+!/podcast.xml

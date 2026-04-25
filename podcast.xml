@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>Daily Inference</title>
+    <link>https://gleipnerai.github.io/</link>
+    <language>en-us</language>
+    <copyright>© 2026 gleipnerAI</copyright>
+    <description>Daily Inference is an automated morning briefing for people who track the AI field. A scholarly wolf — in practice, a language model for the writing and a synthesized voice for the audio — reads the day&apos;s papers and posts and tells you what shipped, what matters, and where the caveats are. Every weekday, before sunrise, the wolf makes the rounds — arXiv, the major research blogs, HuggingFace Daily Papers, frontier-lab releases, coding-agent products, robotics, interpretability research, and defense and national-security AI — then ranks every in-window story on impact, importance, and community reach, and narrates the top four in depth for a ten-to-fifteen minute listen.
+
+The narration is dense and ML-literate. It will not explain what a transformer is. It will tell you what the new result is, the concrete numbers, the experimental setup, and where the caveats are. If you read papers and want a coherent, substantive daily read, this is for you.
+
+Every story links to its primary source. The audio summarizes the top four; the written digest carries all two-hundred-plus ranked items with links out. Consider the show a doorway — the wolf reads the field&apos;s papers aloud, but the papers themselves, and the humans who wrote them, live at the end of the links.</description>
+    <itunes:summary>Daily Inference is an automated morning briefing for people who track the AI field. A scholarly wolf — in practice, a language model for the writing and a synthesized voice for the audio — reads the day&apos;s papers and posts and tells you what shipped, what matters, and where the caveats are. Every weekday, before sunrise, the wolf makes the rounds — arXiv, the major research blogs, HuggingFace Daily Papers, frontier-lab releases, coding-agent products, robotics, interpretability research, and defense and national-security AI — then ranks every in-window story on impact, importance, and community reach, and narrates the top four in depth for a ten-to-fifteen minute listen.
+
+The narration is dense and ML-literate. It will not explain what a transformer is. It will tell you what the new result is, the concrete numbers, the experimental setup, and where the caveats are. If you read papers and want a coherent, substantive daily read, this is for you.
+
+Every story links to its primary source. The audio summarizes the top four; the written digest carries all two-hundred-plus ranked items with links out. Consider the show a doorway — the wolf reads the field&apos;s papers aloud, but the papers themselves, and the humans who wrote them, live at the end of the links.</itunes:summary>
+    <itunes:subtitle>A ten-to-fifteen minute daily briefing on AI research and industry — practitioner-focused, ML-literate, automated every weekday morning.</itunes:subtitle>
+    <itunes:author>gleipnerAI</itunes:author>
+    <itunes:type>episodic</itunes:type>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:category text="Technology">
+      <itunes:category text="Tech News"/>
+    </itunes:category>
+    <itunes:owner>
+      <itunes:name>gleipnerAI</itunes:name>
+      <itunes:email>gleipner.ai@proton.me</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+    <image><url>https://gleipnerai.github.io/artwork/cover.jpg</url><title>Daily Inference</title><link>https://gleipnerai.github.io/</link></image>
+    <atom:link href="https://gleipnerai.github.io/podcast.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Sat, 25 Apr 2026 11:26:56 +0000</lastBuildDate>
+    <pubDate>Sat, 25 Apr 2026 13:00:00 +0000</pubDate>
+    <item>
+      <title>Saturday, April 25, 2026 — Daily Inference</title>
+      <description>Audio briefing for Saturday, April 25, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend — The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. (2) Google to invest up to $40B in Anthropic in cash and compute — TechCrunch&apos;s reporting on Friday details Google&apos;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as… (3) Apple&apos;s new CEO, and why Elon Musk wants to buy Cursor for $60B — Friday&apos;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&apos;s posture in the platform layer. (4) OpenAI publishes the GPT-5.5 prompting guide — GPT-5.5 prompting guide Now that GPT-5.5 is available in the API , OpenAI have released a wealth of useful tips on how best to prompt the new model. Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-25.html</description>
+      <itunes:summary>Audio briefing for Saturday, April 25, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend — The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. (2) Google to invest up to $40B in Anthropic in cash and compute — TechCrunch&apos;s reporting on Friday details Google&apos;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as… (3) Apple&apos;s new CEO, and why Elon Musk wants to buy Cursor for $60B — Friday&apos;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&apos;s posture in the platform layer. (4) OpenAI publishes the GPT-5.5 prompting guide — GPT-5.5 prompting guide Now that GPT-5.5 is available in the API , OpenAI have released a wealth of useful tips on how best to prompt the new model. Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-25.html</itunes:summary>
+      <link>https://gleipnerai.github.io/digests/2026-04-25.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-25</guid>
+      <pubDate>Sat, 25 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://gleipnerai.github.io/podcasts/2026-04-25.mp3" length="13299756" type="audio/mpeg"/>
+      <itunes:duration>13:50</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+    </item>
+    <item>
+      <title>Friday, April 24, 2026 — Daily Inference</title>
+      <description>Audio briefing for Friday, April 24, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) GPT-5.5 launch: frontier model + Codex superapp (OpenAI) — OpenAI released GPT-5.5 on April 23, positioned as &quot;a new class of intelligence for real work&quot; and rolled out across ChatGPT and the Codex app, with API access held back pending additional safeguards. (2) DeepSeek V4-Pro and V4-Flash — largest open-weights model ever, aggressive pricing — DeepSeek ended its five-month silence since V3.2 Speciale with two preview models in the V4 series, both MIT-licensed, both 1-million-token context, both mixture-of-experts. (3) What We Learned Building Cloud Agents — Cognition published a long follow-up to its earlier posts on multi-agent patterns, this time dissecting the infrastructure demands of cloud-based software engineering agents. (4) UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling — UniT, the top-voted paper on Hugging Face Daily Papers for April 24, tackles one of the core bottlenecks in humanoid foundation models: the kinematic mismatch that makes massive egocentric human video data hard to use… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-24.html</description>
+      <itunes:summary>Audio briefing for Friday, April 24, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) GPT-5.5 launch: frontier model + Codex superapp (OpenAI) — OpenAI released GPT-5.5 on April 23, positioned as &quot;a new class of intelligence for real work&quot; and rolled out across ChatGPT and the Codex app, with API access held back pending additional safeguards. (2) DeepSeek V4-Pro and V4-Flash — largest open-weights model ever, aggressive pricing — DeepSeek ended its five-month silence since V3.2 Speciale with two preview models in the V4 series, both MIT-licensed, both 1-million-token context, both mixture-of-experts. (3) What We Learned Building Cloud Agents — Cognition published a long follow-up to its earlier posts on multi-agent patterns, this time dissecting the infrastructure demands of cloud-based software engineering agents. (4) UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling — UniT, the top-voted paper on Hugging Face Daily Papers for April 24, tackles one of the core bottlenecks in humanoid foundation models: the kinematic mismatch that makes massive egocentric human video data hard to use… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-24.html</itunes:summary>
+      <link>https://gleipnerai.github.io/digests/2026-04-24.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-24</guid>
+      <pubDate>Fri, 24 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://gleipnerai.github.io/podcasts/2026-04-24.mp3" length="12939950" type="audio/mpeg"/>
+      <itunes:duration>13:28</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+      <podcast:transcript url="https://gleipnerai.github.io/transcripts/2026-04-24.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Thursday, April 23, 2026 — Daily Inference</title>
+      <description>Audio briefing for Thursday, April 23, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model — Alibaba released Qwen3.6-27B today, and the interesting part is not that it is another checkpoint in the Qwen line but that the 27 billion parameter dense model outperforms the previous Qwen3.5 flagship, which was a 397… (2) Emotion Concepts and their Function in a Large Language Model — Anthropic&apos;s Transformer Circuits team, led by Sofroniew and collaborators, published a paper today identifying internal representations of emotion concepts inside Claude Sonnet 4.5 and demonstrating, through causal… (3) LLaDA2.0-Uni: Unifying Multimodal Understanding and Generation with Diffusion Large Language Model — LLaDA 2.0 Uni, from inclusionAI, landed at the top of Hugging Face Daily Papers today with 86 likes, and it is the most ambitious entry so far in the growing effort to build unified multimodal models on top of discrete… (4) Multi-Agents: What&apos;s Actually Working — Walden Yan published a piece on the Cognition blog today revisiting a position he took a year ago, which was that multi-agent systems were mostly a source of churn rather than capability, and updating it with what the… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-23.html</description>
+      <itunes:summary>Audio briefing for Thursday, April 23, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model — Alibaba released Qwen3.6-27B today, and the interesting part is not that it is another checkpoint in the Qwen line but that the 27 billion parameter dense model outperforms the previous Qwen3.5 flagship, which was a 397… (2) Emotion Concepts and their Function in a Large Language Model — Anthropic&apos;s Transformer Circuits team, led by Sofroniew and collaborators, published a paper today identifying internal representations of emotion concepts inside Claude Sonnet 4.5 and demonstrating, through causal… (3) LLaDA2.0-Uni: Unifying Multimodal Understanding and Generation with Diffusion Large Language Model — LLaDA 2.0 Uni, from inclusionAI, landed at the top of Hugging Face Daily Papers today with 86 likes, and it is the most ambitious entry so far in the growing effort to build unified multimodal models on top of discrete… (4) Multi-Agents: What&apos;s Actually Working — Walden Yan published a piece on the Cognition blog today revisiting a position he took a year ago, which was that multi-agent systems were mostly a source of churn rather than capability, and updating it with what the… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-23.html</itunes:summary>
+      <link>https://gleipnerai.github.io/digests/2026-04-23.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-23</guid>
+      <pubDate>Thu, 23 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://gleipnerai.github.io/podcasts/2026-04-23.mp3" length="14072917" type="audio/mpeg"/>
+      <itunes:duration>14:39</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+      <podcast:transcript url="https://gleipnerai.github.io/transcripts/2026-04-23.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Wednesday, April 22, 2026 — Daily Inference</title>
+      <description>Audio briefing for Wednesday, April 22, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Kimi K2.6 released — now the leading open-weights model (Moonshot) — Moonshot released Kimi K2.6, described as a &quot;natively multimodal model, powerful coding capabilities, and Agent performance&quot; spanning multiple modes. (2) Qwen3.5-Omni Technical Report — Qwen3.5-Omni: an omnimodal LLM from Alibaba achieving state-of-the-art on audio-and-audio-visual benchmarks across text, image, audio, and video. (3) Emotion Concepts and their Function in a Large Language Model — Sofroniew et al. (4) ChatGPT&apos;s new Images 2.0 model — strong text generation in images — OpenAI shipped Images 2.0 inside ChatGPT. Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-22.html</description>
+      <itunes:summary>Audio briefing for Wednesday, April 22, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Kimi K2.6 released — now the leading open-weights model (Moonshot) — Moonshot released Kimi K2.6, described as a &quot;natively multimodal model, powerful coding capabilities, and Agent performance&quot; spanning multiple modes. (2) Qwen3.5-Omni Technical Report — Qwen3.5-Omni: an omnimodal LLM from Alibaba achieving state-of-the-art on audio-and-audio-visual benchmarks across text, image, audio, and video. (3) Emotion Concepts and their Function in a Large Language Model — Sofroniew et al. (4) ChatGPT&apos;s new Images 2.0 model — strong text generation in images — OpenAI shipped Images 2.0 inside ChatGPT. Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-22.html</itunes:summary>
+      <link>https://gleipnerai.github.io/digests/2026-04-22.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-22</guid>
+      <pubDate>Wed, 22 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://gleipnerai.github.io/podcasts/2026-04-22.mp3" length="13482169" type="audio/mpeg"/>
+      <itunes:duration>14:02</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+      <podcast:transcript url="https://gleipnerai.github.io/transcripts/2026-04-22.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Tuesday, April 21, 2026 — Daily Inference</title>
+      <description>Audio briefing for Tuesday, April 21, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) AI2 releases BAR: modular post-training via MoE merge from independently-trained experts — AI2 released BAR, short for Branched Adapters and Routers — a recipe for post-training language models one capability at a time by training domain experts independently on disjoint data slices, then merging the… (2) ClawEnvKit: Automatic Environment Generation for Claw-Like Agents — ClawEnvKit is a toolkit for automatically generating training environments for claw-shaped robotic agents — the classic prehensile-manipulator category used in warehouse picking, assembly, and home-task research. (3) Kimi K2.6: The new leading open-weights model — Moonshot AI released Kimi K2.6, and Artificial Analysis has evaluated it as the new leading open-weights language model on their independent intelligence composite. (4) OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation — OneVL targets a specific failure mode in current vision-language-action pipelines used for autonomous driving: chain-of-thought reasoning improves trajectory quality but imposes an autoregressive latency tax that is… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-21.html</description>
+      <itunes:summary>Audio briefing for Tuesday, April 21, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) AI2 releases BAR: modular post-training via MoE merge from independently-trained experts — AI2 released BAR, short for Branched Adapters and Routers — a recipe for post-training language models one capability at a time by training domain experts independently on disjoint data slices, then merging the… (2) ClawEnvKit: Automatic Environment Generation for Claw-Like Agents — ClawEnvKit is a toolkit for automatically generating training environments for claw-shaped robotic agents — the classic prehensile-manipulator category used in warehouse picking, assembly, and home-task research. (3) Kimi K2.6: The new leading open-weights model — Moonshot AI released Kimi K2.6, and Artificial Analysis has evaluated it as the new leading open-weights language model on their independent intelligence composite. (4) OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation — OneVL targets a specific failure mode in current vision-language-action pipelines used for autonomous driving: chain-of-thought reasoning improves trajectory quality but imposes an autoregressive latency tax that is… Full written digest with all ranked items: https://gleipnerai.github.io/digests/2026-04-21.html</itunes:summary>
+      <link>https://gleipnerai.github.io/digests/2026-04-21.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-21</guid>
+      <pubDate>Tue, 21 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://gleipnerai.github.io/podcasts/2026-04-21.mp3" length="11337984" type="audio/mpeg"/>
+      <itunes:duration>11:48</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://gleipnerai.github.io/artwork/cover.jpg"/>
+      <podcast:transcript url="https://gleipnerai.github.io/transcripts/2026-04-21.txt" type="text/plain"/>
+    </item>
+  </channel>
+</rss>
