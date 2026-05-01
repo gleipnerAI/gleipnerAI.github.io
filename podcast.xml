@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>Wolf Digest</title>
+    <link>https://wolfdigest.com/</link>
+    <language>en-us</language>
+    <copyright>© 2026 gleipnerAI</copyright>
+    <description>Wolf Digest is an automated morning briefing for people who track the AI field. A scholarly wolf — in practice, a language model for the writing and a synthesized voice for the audio — reads the day&apos;s papers and posts and tells you what shipped, what matters, and where the caveats are. Every weekday, before sunrise, the wolf makes the rounds — arXiv, the major research blogs, HuggingFace Daily Papers, frontier-lab releases, coding-agent products, robotics, interpretability research, and defense and national-security AI — then ranks every in-window story on impact, importance, and community reach, and narrates the top four in depth for a ten-to-fifteen minute listen.
+
+The narration is dense and ML-literate. It will not explain what a transformer is. It will tell you what the new result is, the concrete numbers, the experimental setup, and where the caveats are. If you read papers and want a coherent, substantive daily read, this is for you.
+
+Every story links to its primary source. The audio summarizes the top four; the written digest carries all two-hundred-plus ranked items with links out. Consider the show a doorway — the wolf reads the field&apos;s papers aloud, but the papers themselves, and the humans who wrote them, live at the end of the links.</description>
+    <itunes:summary>Wolf Digest is an automated morning briefing for people who track the AI field. A scholarly wolf — in practice, a language model for the writing and a synthesized voice for the audio — reads the day&apos;s papers and posts and tells you what shipped, what matters, and where the caveats are. Every weekday, before sunrise, the wolf makes the rounds — arXiv, the major research blogs, HuggingFace Daily Papers, frontier-lab releases, coding-agent products, robotics, interpretability research, and defense and national-security AI — then ranks every in-window story on impact, importance, and community reach, and narrates the top four in depth for a ten-to-fifteen minute listen.
+
+The narration is dense and ML-literate. It will not explain what a transformer is. It will tell you what the new result is, the concrete numbers, the experimental setup, and where the caveats are. If you read papers and want a coherent, substantive daily read, this is for you.
+
+Every story links to its primary source. The audio summarizes the top four; the written digest carries all two-hundred-plus ranked items with links out. Consider the show a doorway — the wolf reads the field&apos;s papers aloud, but the papers themselves, and the humans who wrote them, live at the end of the links.</itunes:summary>
+    <itunes:subtitle>A ten-to-fifteen minute daily briefing on AI research and industry — practitioner-focused, ML-literate, automated every weekday morning.</itunes:subtitle>
+    <itunes:author>gleipnerAI</itunes:author>
+    <itunes:type>episodic</itunes:type>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:category text="Technology">
+      <itunes:category text="Tech News"/>
+    </itunes:category>
+    <itunes:owner>
+      <itunes:name>gleipnerAI</itunes:name>
+      <itunes:email>gleipner.ai@proton.me</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+    <image><url>https://wolfdigest.com/artwork/cover.jpg</url><title>Wolf Digest</title><link>https://wolfdigest.com/</link></image>
+    <atom:link href="https://wolfdigest.com/podcast.xml" rel="self" type="application/rss+xml"/>
+    <itunes:new-feed-url>https://wolfdigest.com/podcast.xml</itunes:new-feed-url>
+    <lastBuildDate>Fri, 01 May 2026 07:27:15 +0000</lastBuildDate>
+    <pubDate>Fri, 01 May 2026 13:00:00 +0000</pubDate>
+    <item>
+      <title>Friday, May 1, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Friday, May 1, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-05-01.html</description>
+      <itunes:summary>Audio briefing for Friday, May 1, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-05-01.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-05-01.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-05-01</guid>
+      <pubDate>Fri, 01 May 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-05-01.mp3" length="12780951" type="audio/mpeg"/>
+      <itunes:duration>13:18</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-05-01.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Thursday, April 30, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Thursday, April 30, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-04-30.html</description>
+      <itunes:summary>Audio briefing for Thursday, April 30, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-04-30.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-30.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-30</guid>
+      <pubDate>Thu, 30 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-30.mp3" length="13413124" type="audio/mpeg"/>
+      <itunes:duration>13:57</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-30.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Wednesday, April 29, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Wednesday, April 29, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-04-29.html</description>
+      <itunes:summary>Audio briefing for Wednesday, April 29, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Full written digest: https://wolfdigest.com/digests/2026-04-29.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-29.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-29</guid>
+      <pubDate>Wed, 29 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-29.mp3" length="15409203" type="audio/mpeg"/>
+      <itunes:duration>16:02</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-29.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Tuesday, April 28, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Tuesday, April 28, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) OpenAI–Microsoft AGI clause expires; deal restructured to enable $50B AWS partnership — OpenAI and Microsoft restructured the central commercial clause of their relationship today, retiring the long-running &apos;AGI clause&apos; that for six years had said Microsoft&apos;s commercial intellectual-property rights to… (2) Ineffable Intelligence raises $1.1B at $5.1B valuation to build AI that learns without human data — David Silver — co-author of AlphaGo, AlphaZero, and the &apos;era of experience&apos; position paper Silver and Sutton circulated in 2024 — has closed one-point-one billion dollars at a five-point-one-billion valuation for… (3) Musk vs. Altman trial opens in N.D. Cal. — verdict could constrain OpenAI&apos;s for-profit conversion ahead of IPO — The Musk-versus-Altman trial opened in the Northern District of California this week, the culmination of more than two years of pre-trial filings, mediation attempts, and amended complaints. (4) DeepSeek V4 preview drops with extended-context inference; community parses Friday&apos;s release — DeepSeek released a preview build of V4 late Friday, and the weekend has been spent by the community parsing what the open release actually means. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-28.html</description>
+      <itunes:summary>Audio briefing for Tuesday, April 28, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) OpenAI–Microsoft AGI clause expires; deal restructured to enable $50B AWS partnership — OpenAI and Microsoft restructured the central commercial clause of their relationship today, retiring the long-running &apos;AGI clause&apos; that for six years had said Microsoft&apos;s commercial intellectual-property rights to… (2) Ineffable Intelligence raises $1.1B at $5.1B valuation to build AI that learns without human data — David Silver — co-author of AlphaGo, AlphaZero, and the &apos;era of experience&apos; position paper Silver and Sutton circulated in 2024 — has closed one-point-one billion dollars at a five-point-one-billion valuation for… (3) Musk vs. Altman trial opens in N.D. Cal. — verdict could constrain OpenAI&apos;s for-profit conversion ahead of IPO — The Musk-versus-Altman trial opened in the Northern District of California this week, the culmination of more than two years of pre-trial filings, mediation attempts, and amended complaints. (4) DeepSeek V4 preview drops with extended-context inference; community parses Friday&apos;s release — DeepSeek released a preview build of V4 late Friday, and the weekend has been spent by the community parsing what the open release actually means. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-28.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-28.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-28</guid>
+      <pubDate>Tue, 28 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-28.mp3" length="14519731" type="audio/mpeg"/>
+      <itunes:duration>15:06</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-28.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Monday, April 27, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Monday, April 27, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 — Day-0 OSS serving + verified RL via SGLang and Miles — The SGLang and Miles teams announced day-zero open-source support for DeepSeek V4, covering both inference and reinforcement-learning training of V4&apos;s hybrid sparse-attention architecture, manifold-constrained… (2) OpenAI publishes &apos;Our principles&apos; — Altman&apos;s expanded charter for the AGI era — Sam Altman&apos;s first major policy post since the Foundation expansion lays out five principles — democratization, empowerment, universal prosperity, resilience, and adaptability — that OpenAI says will guide its decisions… (3) Cohere acquires Aleph Alpha to form a $20B &apos;sovereign AI&apos; champion — Canadian-headquartered Cohere is taking over Germany-based Aleph Alpha to create a transatlantic sovereign-AI alternative to the US frontier labs, with the explicit blessing of both governments. (4) Apple confirms John Ternus will succeed Tim Cook as CEO — Apple confirmed Monday that John Ternus, the company&apos;s senior vice president of hardware engineering, will take over as CEO from Tim Cook later this year, ending fourteen years of Cook leadership. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-27.html</description>
+      <itunes:summary>Audio briefing for Monday, April 27, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 — Day-0 OSS serving + verified RL via SGLang and Miles — The SGLang and Miles teams announced day-zero open-source support for DeepSeek V4, covering both inference and reinforcement-learning training of V4&apos;s hybrid sparse-attention architecture, manifold-constrained… (2) OpenAI publishes &apos;Our principles&apos; — Altman&apos;s expanded charter for the AGI era — Sam Altman&apos;s first major policy post since the Foundation expansion lays out five principles — democratization, empowerment, universal prosperity, resilience, and adaptability — that OpenAI says will guide its decisions… (3) Cohere acquires Aleph Alpha to form a $20B &apos;sovereign AI&apos; champion — Canadian-headquartered Cohere is taking over Germany-based Aleph Alpha to create a transatlantic sovereign-AI alternative to the US frontier labs, with the explicit blessing of both governments. (4) Apple confirms John Ternus will succeed Tim Cook as CEO — Apple confirmed Monday that John Ternus, the company&apos;s senior vice president of hardware engineering, will take over as CEO from Tim Cook later this year, ending fourteen years of Cook leadership. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-27.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-27.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-27</guid>
+      <pubDate>Mon, 27 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-27.mp3" length="13332793" type="audio/mpeg"/>
+      <itunes:duration>13:52</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-27.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Saturday, April 25, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Saturday, April 25, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend — The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. (2) Google to invest up to $40B in Anthropic in cash and compute — TechCrunch&apos;s reporting on Friday details Google&apos;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as… (3) Apple&apos;s new CEO, and why Elon Musk wants to buy Cursor for $60B — Friday&apos;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&apos;s posture in the platform layer. (4) OpenAI publishes the GPT-5.5 prompting guide — GPT-5.5 prompting guide Now that GPT-5.5 is available in the API , OpenAI have released a wealth of useful tips on how best to prompt the new model. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-25.html</description>
+      <itunes:summary>Audio briefing for Saturday, April 25, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend — The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. (2) Google to invest up to $40B in Anthropic in cash and compute — TechCrunch&apos;s reporting on Friday details Google&apos;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as… (3) Apple&apos;s new CEO, and why Elon Musk wants to buy Cursor for $60B — Friday&apos;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&apos;s posture in the platform layer. (4) OpenAI publishes the GPT-5.5 prompting guide — GPT-5.5 prompting guide Now that GPT-5.5 is available in the API , OpenAI have released a wealth of useful tips on how best to prompt the new model. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-25.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-25.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-25</guid>
+      <pubDate>Sat, 25 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-25.mp3" length="13299756" type="audio/mpeg"/>
+      <itunes:duration>13:50</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-25.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Friday, April 24, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Friday, April 24, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) GPT-5.5 launch: frontier model + Codex superapp (OpenAI) — OpenAI released GPT-5.5 on April 23, positioned as &quot;a new class of intelligence for real work&quot; and rolled out across ChatGPT and the Codex app, with API access held back pending additional safeguards. (2) DeepSeek V4-Pro and V4-Flash — largest open-weights model ever, aggressive pricing — DeepSeek ended its five-month silence since V3.2 Speciale with two preview models in the V4 series, both MIT-licensed, both 1-million-token context, both mixture-of-experts. (3) What We Learned Building Cloud Agents — Cognition published a long follow-up to its earlier posts on multi-agent patterns, this time dissecting the infrastructure demands of cloud-based software engineering agents. (4) UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling — UniT, the top-voted paper on Hugging Face Daily Papers for April 24, tackles one of the core bottlenecks in humanoid foundation models: the kinematic mismatch that makes massive egocentric human video data hard to use… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-24.html</description>
+      <itunes:summary>Audio briefing for Friday, April 24, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) GPT-5.5 launch: frontier model + Codex superapp (OpenAI) — OpenAI released GPT-5.5 on April 23, positioned as &quot;a new class of intelligence for real work&quot; and rolled out across ChatGPT and the Codex app, with API access held back pending additional safeguards. (2) DeepSeek V4-Pro and V4-Flash — largest open-weights model ever, aggressive pricing — DeepSeek ended its five-month silence since V3.2 Speciale with two preview models in the V4 series, both MIT-licensed, both 1-million-token context, both mixture-of-experts. (3) What We Learned Building Cloud Agents — Cognition published a long follow-up to its earlier posts on multi-agent patterns, this time dissecting the infrastructure demands of cloud-based software engineering agents. (4) UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling — UniT, the top-voted paper on Hugging Face Daily Papers for April 24, tackles one of the core bottlenecks in humanoid foundation models: the kinematic mismatch that makes massive egocentric human video data hard to use… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-24.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-24.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-24</guid>
+      <pubDate>Fri, 24 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-24.mp3" length="12939950" type="audio/mpeg"/>
+      <itunes:duration>13:28</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-24.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Thursday, April 23, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Thursday, April 23, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model — Alibaba released Qwen3.6-27B today, and the interesting part is not that it is another checkpoint in the Qwen line but that the 27 billion parameter dense model outperforms the previous Qwen3.5 flagship, which was a 397… (2) Emotion Concepts and their Function in a Large Language Model — Anthropic&apos;s Transformer Circuits team, led by Sofroniew and collaborators, published a paper today identifying internal representations of emotion concepts inside Claude Sonnet 4.5 and demonstrating, through causal… (3) LLaDA2.0-Uni: Unifying Multimodal Understanding and Generation with Diffusion Large Language Model — LLaDA 2.0 Uni, from inclusionAI, landed at the top of Hugging Face Daily Papers today with 86 likes, and it is the most ambitious entry so far in the growing effort to build unified multimodal models on top of discrete… (4) Multi-Agents: What&apos;s Actually Working — Walden Yan published a piece on the Cognition blog today revisiting a position he took a year ago, which was that multi-agent systems were mostly a source of churn rather than capability, and updating it with what the… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-23.html</description>
+      <itunes:summary>Audio briefing for Thursday, April 23, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model — Alibaba released Qwen3.6-27B today, and the interesting part is not that it is another checkpoint in the Qwen line but that the 27 billion parameter dense model outperforms the previous Qwen3.5 flagship, which was a 397… (2) Emotion Concepts and their Function in a Large Language Model — Anthropic&apos;s Transformer Circuits team, led by Sofroniew and collaborators, published a paper today identifying internal representations of emotion concepts inside Claude Sonnet 4.5 and demonstrating, through causal… (3) LLaDA2.0-Uni: Unifying Multimodal Understanding and Generation with Diffusion Large Language Model — LLaDA 2.0 Uni, from inclusionAI, landed at the top of Hugging Face Daily Papers today with 86 likes, and it is the most ambitious entry so far in the growing effort to build unified multimodal models on top of discrete… (4) Multi-Agents: What&apos;s Actually Working — Walden Yan published a piece on the Cognition blog today revisiting a position he took a year ago, which was that multi-agent systems were mostly a source of churn rather than capability, and updating it with what the… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-23.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-23.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-23</guid>
+      <pubDate>Thu, 23 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-23.mp3" length="14072917" type="audio/mpeg"/>
+      <itunes:duration>14:39</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-23.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Wednesday, April 22, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Wednesday, April 22, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Kimi K2.6 released — now the leading open-weights model (Moonshot) — Moonshot released Kimi K2.6, described as a &quot;natively multimodal model, powerful coding capabilities, and Agent performance&quot; spanning multiple modes. (2) Qwen3.5-Omni Technical Report — Qwen3.5-Omni: an omnimodal LLM from Alibaba achieving state-of-the-art on audio-and-audio-visual benchmarks across text, image, audio, and video. (3) Emotion Concepts and their Function in a Large Language Model — Sofroniew et al. (4) ChatGPT&apos;s new Images 2.0 model — strong text generation in images — OpenAI shipped Images 2.0 inside ChatGPT. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-22.html</description>
+      <itunes:summary>Audio briefing for Wednesday, April 22, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) Kimi K2.6 released — now the leading open-weights model (Moonshot) — Moonshot released Kimi K2.6, described as a &quot;natively multimodal model, powerful coding capabilities, and Agent performance&quot; spanning multiple modes. (2) Qwen3.5-Omni Technical Report — Qwen3.5-Omni: an omnimodal LLM from Alibaba achieving state-of-the-art on audio-and-audio-visual benchmarks across text, image, audio, and video. (3) Emotion Concepts and their Function in a Large Language Model — Sofroniew et al. (4) ChatGPT&apos;s new Images 2.0 model — strong text generation in images — OpenAI shipped Images 2.0 inside ChatGPT. Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-22.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-22.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-22</guid>
+      <pubDate>Wed, 22 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-22.mp3" length="13482169" type="audio/mpeg"/>
+      <itunes:duration>14:02</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-22.txt" type="text/plain"/>
+    </item>
+    <item>
+      <title>Tuesday, April 21, 2026 — Wolf Digest</title>
+      <description>Audio briefing for Tuesday, April 21, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) AI2 releases BAR: modular post-training via MoE merge from independently-trained experts — AI2 released BAR, short for Branched Adapters and Routers — a recipe for post-training language models one capability at a time by training domain experts independently on disjoint data slices, then merging the… (2) ClawEnvKit: Automatic Environment Generation for Claw-Like Agents — ClawEnvKit is a toolkit for automatically generating training environments for claw-shaped robotic agents — the classic prehensile-manipulator category used in warehouse picking, assembly, and home-task research. (3) Kimi K2.6: The new leading open-weights model — Moonshot AI released Kimi K2.6, and Artificial Analysis has evaluated it as the new leading open-weights language model on their independent intelligence composite. (4) OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation — OneVL targets a specific failure mode in current vision-language-action pipelines used for autonomous driving: chain-of-thought reasoning improves trajectory quality but imposes an autoregressive latency tax that is… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-21.html</description>
+      <itunes:summary>Audio briefing for Tuesday, April 21, 2026 — the day&apos;s top four AI research and industry stories, narrated in depth (roughly 10–15 minutes). Today&apos;s stories: (1) AI2 releases BAR: modular post-training via MoE merge from independently-trained experts — AI2 released BAR, short for Branched Adapters and Routers — a recipe for post-training language models one capability at a time by training domain experts independently on disjoint data slices, then merging the… (2) ClawEnvKit: Automatic Environment Generation for Claw-Like Agents — ClawEnvKit is a toolkit for automatically generating training environments for claw-shaped robotic agents — the classic prehensile-manipulator category used in warehouse picking, assembly, and home-task research. (3) Kimi K2.6: The new leading open-weights model — Moonshot AI released Kimi K2.6, and Artificial Analysis has evaluated it as the new leading open-weights language model on their independent intelligence composite. (4) OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation — OneVL targets a specific failure mode in current vision-language-action pipelines used for autonomous driving: chain-of-thought reasoning improves trajectory quality but imposes an autoregressive latency tax that is… Full written digest with all ranked items: https://wolfdigest.com/digests/2026-04-21.html</itunes:summary>
+      <link>https://wolfdigest.com/digests/2026-04-21.html</link>
+      <guid isPermaLink="false">gleipnerai-digest-2026-04-21</guid>
+      <pubDate>Tue, 21 Apr 2026 13:00:00 +0000</pubDate>
+      <enclosure url="https://wolfdigest.com/podcasts/2026-04-21.mp3" length="11337984" type="audio/mpeg"/>
+      <itunes:duration>11:48</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:author>gleipnerAI</itunes:author>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://wolfdigest.com/artwork/cover.jpg"/>
+      <podcast:transcript url="https://wolfdigest.com/transcripts/2026-04-21.txt" type="text/plain"/>
+    </item>
+  </channel>
+</rss>

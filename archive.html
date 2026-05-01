@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf Digest — Archive</title>
+<style>
+  :root {
+    --bg: #181210;
+    --panel: #2a2018;
+    --panel-2: #342920;
+    --border: #433628;
+    --text: #efe4cb;
+    --text-dim: #b8a381;
+    --accent: #e6b84a;
+    --accent-2: #d4a574;
+    --shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background:
+      radial-gradient(ellipse 120% 60% at 15% 0%, #241b14 0%, transparent 55%),
+      radial-gradient(ellipse 100% 70% at 85% 100%, rgba(212, 165, 116, 0.05) 0%, transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+    line-height: 1.72;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  header { margin-bottom: 32px; }
+  header h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.01em; }
+  header .sub { color: var(--text-dim); font-size: 14px; }
+
+  .latest-card {
+    display: block;
+    background: linear-gradient(135deg, #2d221a 0%, #251d16 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: var(--shadow);
+    margin-bottom: 36px;
+    transition: transform 0.12s ease, border-color 0.12s ease;
+  }
+  .latest-card:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .latest-card .tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); font-weight: 600; margin-bottom: 8px; }
+  .latest-card h2 { margin: 0 0 6px; font-size: 22px; }
+  .latest-card .date { color: var(--text-dim); font-size: 14px; }
+  .latest-card .cta { margin-top: 14px; font-size: 14px; color: var(--accent); font-weight: 500; }
+
+  section h3 {
+    margin: 0 0 12px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+  .month-group { margin-bottom: 24px; }
+  .month-group .month-label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .archive-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .archive-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: border-color 0.1s ease, background 0.1s ease;
+  }
+  .archive-item:hover { border-color: var(--accent); background: var(--panel-2); }
+  .archive-item .arrow { color: var(--text-dim); font-size: 13px; }
+
+  .empty {
+    color: var(--text-dim);
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+
+  footer {
+    margin-top: 48px;
+    color: var(--text-dim);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  footer code { background: var(--panel); padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Wolf Digest — Archive</h1>
+    <div class="sub">Every published digest, newest first. The site root (<a href="./" style="color:var(--accent);">home</a>) always opens the most recent digest directly.</div>
+  </header>
+
+  <!-- LATEST_CARD_START -->
+  <a class="latest-card" href="digests/2026-05-01.html">
+    <div class="tag">Latest digest</div>
+    <h2>Friday, May 1, 2026</h2>
+    <div class="date">2026-05-01</div>
+    <div class="cta">Read the full digest →</div>
+  </a>
+  <!-- LATEST_CARD_END -->
+
+  <section>
+    <h3>Archive</h3>
+    <!-- ARCHIVE_START -->
+    <div class="month-group">
+      <div class="month-label">May 2026</div>
+      <div class="archive-list">
+        <a class='archive-item' href='digests/2026-05-01.html'><span>2026-05-01</span><span class='arrow'>→</span></a>
+      </div>
+    </div>
+    <div class="month-group">
+      <div class="month-label">April 2026</div>
+      <div class="archive-list">
+        <a class='archive-item' href='digests/2026-04-30.html'><span>2026-04-30</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-29.html'><span>2026-04-29</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-28.html'><span>2026-04-28</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-27.html'><span>2026-04-27</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-25.html'><span>2026-04-25</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-24.html'><span>2026-04-24</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-23.html'><span>2026-04-23</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-22.html'><span>2026-04-22</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-21.html'><span>2026-04-21</span><span class='arrow'>→</span></a>
+        <a class='archive-item' href='digests/2026-04-20.html'><span>2026-04-20</span><span class='arrow'>→</span></a>
+      </div>
+    </div>
+    <!-- ARCHIVE_END -->
+  </section>
+
+  <footer>
+    This archive is regenerated automatically at the end of each run.
+  </footer>
+</div>
+</body>
+</html>

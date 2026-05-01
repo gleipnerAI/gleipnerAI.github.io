@@ -1,0 +1,16 @@
+/*
+!/.gitignore
+!/index.html
+!/archive.html
+!/CNAME
+!/digests
+!/transcripts
+!/transcripts/**
+!/digests/**
+# Local-only intermediates (input to tools/build_digest.py — never published)
+/digests/*.json
+!/podcasts
+!/podcasts/**
+!/artwork
+!/artwork/**
+!/podcast.xml

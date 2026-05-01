@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf Digest — 2026-04-25</title>
+<style>
+  :root {
+    --bg: #181210;
+    --panel: #2a2018;
+    --panel-2: #342920;
+    --panel-3: #21262e;
+    --border: #433628;
+    --border-2: #353c47;
+    --text: #efe4cb;
+    --text-dim: #b8a381;
+    --text-dimmer: #6a707a;
+    --accent: #e6b84a;
+    --accent-2: #d4a574;
+    --warn: #ffb86b;
+    --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 24px 80px; }
+  .top-nav { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+  .top-nav a { color: var(--text-dim); }
+  .top-nav a:hover { color: var(--accent); }
+  header.main { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 20px; }
+  header.main h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: -0.01em; }
+  header.main .sub { color: var(--text-dim); font-size: 14px; }
+  header.main .sub b { color: var(--text); font-weight: 600; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 16px 0 8px; }
+  .meta-cell { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+  .meta-cell .l { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); }
+  .meta-cell .v { font-size: 18px; font-weight: 600; margin-top: 3px; }
+  .meta-cell .v.sm { font-size: 13px; font-weight: 500; color: var(--text); }
+  .cat-strip { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 10px 0 24px; font-size: 12px; color: var(--text-dim); }
+  .cat-count { display:flex; align-items:center; gap:5px; }
+  .cat-count b { color: var(--text); font-weight: 600; }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; }
+  .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin: 28px 0 10px; }
+  .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 26px; }
+  .kpi { background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%); border: 1px solid var(--border); border-left: 3px solid var(--kpi-color, var(--accent)); border-radius: 12px; padding: 16px 18px; display: block; color: var(--text); text-decoration: none; transition: transform 0.12s ease, border-color 0.12s ease; box-shadow: var(--shadow); }
+  .kpi:hover { transform: translateY(-1px); border-color: var(--kpi-color); text-decoration: none; }
+  .kpi-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+  .kpi-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
+  .kpi-snippet { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+  .kpi-score { margin-top: 10px; font-size: 12px; color: var(--accent-2); font-weight: 600; }
+  .filter-bar { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .filter-row label.field { font-size: 12px; color: var(--text-dim); letter-spacing: 0.04em; }
+  .filter-row input[type="search"] { flex: 1 1 240px; background: var(--panel-2); border: 1px solid var(--border); color: var(--text); padding: 9px 12px; border-radius: 8px; font-size: 14px; outline: none; }
+  .filter-row input[type="search"]:focus { border-color: var(--accent); }
+  .filter-row select { background: var(--panel-2); border: 1px solid var(--border); color: var(--text); padding: 9px 10px; border-radius: 8px; font-size: 13px; outline: none; }
+  .slider-block { display:flex; align-items:center; gap: 10px; flex: 1 1 260px; }
+  .slider-block input[type="range"] { flex: 1; accent-color: var(--accent); }
+  .slider-val { font-variant-numeric: tabular-nums; background: var(--panel-2); padding: 4px 9px; border-radius: 6px; font-size: 13px; font-weight: 600; color: var(--accent-2); min-width: 42px; text-align: center; }
+  .chip-group { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--panel-2); border: 1px solid var(--border); padding: 5px 10px; border-radius: 999px; font-size: 12px; cursor: pointer; user-select: none; }
+  .cat-chip input { accent-color: var(--accent); }
+  .cat-chip .cnt { color: var(--text-dim); font-size: 11px; }
+  .cat-chip:hover { border-color: var(--border-2); }
+  .filter-actions { display:flex; gap: 8px; }
+  .btn { background: var(--panel-2); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .count-line { color: var(--text-dim); font-size: 12px; display: flex; justify-content: space-between; align-items: center; padding: 0 2px; margin-bottom: 4px; }
+  .count-line b { color: var(--text); }
+  .items { display: flex; flex-direction: column; gap: 12px; }
+  .item-wrap { scroll-margin-top: 20px; }
+  .item { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .item[data-hidden="1"] { display: none; }
+  .item-head { display: grid; grid-template-columns: 48px 1fr auto; gap: 14px; align-items: start; margin-bottom: 10px; }
+  .rank { font-size: 13px; color: var(--text-dim); font-variant-numeric: tabular-nums; padding-top: 4px; font-weight: 600; }
+  .title-row { min-width: 0; }
+  .title { margin: 0 0 6px; font-size: 17px; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; }
+  .title a { color: var(--text); }
+  .title a:hover { color: var(--accent); text-decoration: none; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 12px; color: var(--text-dim); }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; background: color-mix(in srgb, var(--pill-color) 18%, var(--panel-2)); color: var(--pill-color); border: 1px solid color-mix(in srgb, var(--pill-color) 30%, transparent); }
+  .srcs { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+  .src-chip { display: inline-block; background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; font-size: 11px; color: var(--text-dim); }
+  .hf-badge { background: #ffd479; color: #3a2a00; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .authors { font-size: 11px; color: var(--text-dimmer); margin-top: 4px; font-style: italic; }
+  .score-block { text-align: right; min-width: 90px; }
+  .score-final { font-size: 22px; font-weight: 700; color: var(--accent-2); font-variant-numeric: tabular-nums; line-height: 1; }
+  .score-breakdown { font-size: 10px; color: var(--text-dim); margin-top: 4px; display: flex; gap: 6px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+  .summary { margin-top: 6px; }
+  .summary p { margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: var(--text); }
+  .summary p:last-child { margin-bottom: 0; }
+  .perspectives { margin-top: 12px; background: var(--panel-2); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; }
+  .perspectives .persp-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 6px; font-weight: 600; }
+  .perspectives ul { margin: 0; padding-left: 18px; }
+  .perspectives li { font-size: 13px; color: var(--text); margin-bottom: 4px; line-height: 1.5; }
+  .perspectives li strong { color: var(--accent); }
+  .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag { font-size: 11px; background: var(--panel-3); color: var(--text-dim); padding: 2px 8px; border-radius: 4px; }
+  .no-results { padding: 40px 20px; text-align: center; color: var(--text-dim); border: 1px dashed var(--border); border-radius: 10px; }
+  footer { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 20px; color: var(--text-dim); font-size: 12px; }
+  footer h3 { font-size: 13px; color: var(--text); margin: 16px 0 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+  footer ul { margin: 0 0 14px; padding-left: 20px; }
+  footer li { margin-bottom: 4px; line-height: 1.45; }
+  .err-cat { color: var(--warn); font-weight: 600; font-size: 11px; }
+  .muted { color: var(--text-dim); }
+  /* Cozy custom audio player */
+  .audio-card { background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 4px 0 22px; box-shadow: 0 4px 18px rgba(0,0,0,0.3); }
+  .audio-card .audio-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .audio-card audio { display: none; }
+  .play-btn { width: 54px; height: 54px; border-radius: 50%; border: 1px solid rgba(230, 184, 74, 0.4); background: radial-gradient(circle at 40% 30%, rgba(230, 184, 74, 0.18), rgba(212, 165, 116, 0.04)); color: var(--accent); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease; padding-left: 3px; flex-shrink: 0; font-family: Georgia, serif; }
+  .play-btn:hover { background: radial-gradient(circle at 40% 30%, rgba(230, 184, 74, 0.3), rgba(212, 165, 116, 0.08)); border-color: var(--accent); transform: scale(1.05); }
+  .play-btn.playing { padding-left: 0; }
+  .visualizer { display: flex; align-items: flex-end; gap: 4px; height: 28px; width: 48px; opacity: 0; transition: opacity 0.35s ease; }
+  .visualizer .bar { width: 4px; background: linear-gradient(to top, var(--accent-2), var(--accent)); border-radius: 2px; height: 25%; transition: height 0.3s ease; }
+  @keyframes bar1 { 0%, 100% { height: 20%; } 40% { height: 85%; } 75% { height: 45%; } }
+  @keyframes bar2 { 0%, 100% { height: 60%; } 50% { height: 28%; } 80% { height: 95%; } }
+  @keyframes bar3 { 0%, 100% { height: 40%; } 35% { height: 100%; } 70% { height: 55%; } }
+  .is-speaking .visualizer, .hero-cover.is-speaking ~ * .visualizer { opacity: 1; }
+  body.wolf-speaking .visualizer { opacity: 1; }
+  body.wolf-speaking .visualizer .bar:nth-child(1) { animation: bar1 0.95s ease-in-out infinite; }
+  body.wolf-speaking .visualizer .bar:nth-child(2) { animation: bar2 0.75s ease-in-out infinite; }
+  body.wolf-speaking .visualizer .bar:nth-child(3) { animation: bar3 1.12s ease-in-out infinite; }
+  .now-playing { flex: 1 1 180px; min-width: 0; }
+  .now-playing .state { display: block; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-style: italic; margin-bottom: 3px; transition: color 0.3s ease; }
+  .now-playing .title { font-size: 16px; color: var(--text); font-weight: 600; }
+  .now-playing .meta { font-size: 12px; color: var(--text-dim); margin-top: 4px; font-style: italic; }
+  .subscribe { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); font-size: 13px; color: var(--text-dim); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .subscribe a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
+  .subscribe a:hover { color: var(--accent); }
+  .subscribe .lbl { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+  @media (max-width: 600px) {
+    .item-head { grid-template-columns: 40px 1fr; }
+    .score-block { grid-column: 2; text-align: left; margin-top: 6px; display: flex; align-items: baseline; gap: 10px; }
+    .score-breakdown { justify-content: flex-start; }
+    header.main h1 { font-size: 22px; }
+  }
+  /* Priority (gold) category indicators — user-toggled per chip */
+  .cat-chip.is-priority { background: linear-gradient(135deg, rgba(245, 192, 66, 0.20), rgba(245, 192, 66, 0.06)); border-color: rgba(245, 192, 66, 0.55); }
+  .cat-chip .pri-toggle { background: none; border: none; color: var(--text-dim); cursor: pointer; font-size: 13px; padding: 0 2px; margin-left: 2px; line-height: 1; opacity: 0.35; transition: opacity 0.12s ease, color 0.12s ease; font-family: inherit; }
+  .cat-chip .pri-toggle:hover { opacity: 1; color: #f5c042; }
+  .cat-chip .pri-toggle::before { content: '\2606'; }  /* ☆ outline star */
+  .cat-chip.is-priority .pri-toggle { opacity: 1; color: #f5c042; }
+  .cat-chip.is-priority .pri-toggle::before { content: '\2605'; }  /* ★ solid star */
+  .item.is-priority-cat { box-shadow: inset 3px 0 0 #f5c042; }
+
+  /* ─── cozy-applied ─── */
+  html, body {
+    background:
+      radial-gradient(ellipse 120% 60% at 15% 0%, #241b14 0%, transparent 55%),
+      radial-gradient(ellipse 100% 70% at 85% 100%, rgba(212, 165, 116, 0.05) 0%, transparent 60%),
+      var(--bg) !important;
+    background-attachment: fixed;
+    line-height: 1.72;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; }
+
+  /* ─── Hero: wolf cover + header + audio card ─── */
+  .hero {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .hero-cover {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px #32281f;
+    transition: box-shadow 0.6s ease;
+  }
+  .hero-cover img { display: block; width: 100%; height: auto; transition: transform 1.4s ease; }
+  .hero-cover::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.25) 100%);
+    pointer-events: none;
+  }
+  @keyframes cozy-breathe {
+    0%, 100% { transform: scale(1.000); }
+    50%      { transform: scale(1.018); }
+  }
+  @keyframes cozy-glow-pulse {
+    0%, 100% { box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(230, 184, 74, 0.35), 0 0 32px -4px rgba(230, 184, 74, 0.38); }
+    50%      { box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(230, 184, 74, 0.55), 0 0 56px -2px rgba(230, 184, 74, 0.38), 0 0 96px -8px rgba(230, 184, 74, 0.25); }
+  }
+  .hero-cover.is-speaking { animation: cozy-glow-pulse 3.6s ease-in-out infinite; }
+  .hero-cover.is-speaking img { animation: cozy-breathe 3.6s ease-in-out infinite; }
+  .hero-text > header.main { margin-bottom: 14px; }
+  .hero-text > header.main h1 { font-size: 32px; letter-spacing: -0.01em; font-weight: 600; }
+  .hero-text > .audio-card { margin: 4px 0 0; }
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; gap: 18px; }
+    .hero-cover { max-width: 240px; margin: 0 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cover.is-speaking, .hero-cover.is-speaking img { animation: none; }
+  }
+
+
+  /* Click-to-share: rank badge copies #item-N anchor URL */
+  .rank { cursor: pointer; transition: color 0.18s ease; user-select: none; }
+  .rank:hover { color: var(--accent); }
+  .rank.just-copied { color: var(--accent-2); }
+
+  /* Categories row: header (label + All/None/Reset) on top, chips below */
+  .filter-row.cat-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .filter-row.cat-row .cat-header { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-nav"><a href="../archive.html">← Archive / All Digests</a></div>
+
+  <section class="hero">
+    <div class="hero-cover" id="cover-frame">
+      <img src="../artwork/cover.jpg" alt="A wolf in round glasses reading a book, wrapped in a golden ribbon, in a sunlit forest.">
+    </div>
+    <div class="hero-text">
+      <header class="main">
+        <h1>Wolf Digest — 2026-04-25</h1>
+        <div class="sub">Coverage window: <b>2026-04-24 03:26 ET</b> → <b>2026-04-25 07:09 ET</b></div>
+      </header>
+      <div class="audio-card">
+        <div class="audio-row">
+          <button type="button" class="play-btn" id="play-btn" aria-label="Play episode">▶</button>
+          <div class="visualizer" aria-hidden="true"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+          <div class="now-playing">
+            <span class="state" id="state-label">Press play to listen</span>
+            <div class="title">Saturday, April 25, 2026</div>
+            <div class="meta">13m 50s · top-4 narrated briefing</div>
+          </div>
+          <audio id="audio" preload="metadata" src="../podcasts/2026-04-25.mp3"></audio>
+        </div>
+        <div class="subscribe">
+          <span class="lbl">Subscribe</span>
+          <a href="https://podcasts.apple.com/us/podcast/wolf-digest/id1895260943" target="_blank" rel="noopener">Apple Podcasts</a>
+          <a href="https://open.spotify.com/show/2Ey1Pv9WM65fLUfjOZxmD2" target="_blank" rel="noopener">Spotify</a>
+          <a href="../podcasts/2026-04-25.mp3" download>Download MP3</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-label">Must-read · top 3</div>
+  <div class="kpi-strip">
+<a class="kpi" href="#item-1" style="--kpi-color:#7c9cff">
+<div class="kpi-tag">#1 · Frontier LLMs</div>
+<div class="kpi-title">DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend</div>
+<div class="kpi-snippet">The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. Latent Space&#x27;s AINews newsletter on Saturday morning leads with the hardware-sovereignty angle: V4 in both its sizes — Pro at one ...</div>
+<div class="kpi-score">Score 8.7</div>
+</a>
+<a class="kpi" href="#item-2" style="--kpi-color:#ffa64d">
+<div class="kpi-tag">#2 · Industry</div>
+<div class="kpi-title">Google to invest up to $40B in Anthropic in cash and compute</div>
+<div class="kpi-snippet">TechCrunch&#x27;s reporting on Friday details Google&#x27;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as Anthropic scales its training infrastructure. The number puts Google&#x27;...</div>
+<div class="kpi-score">Score 8.5</div>
+</a>
+<a class="kpi" href="#item-3" style="--kpi-color:#ffa64d">
+<div class="kpi-tag">#3 · Industry</div>
+<div class="kpi-title">Apple&#x27;s new CEO, and why Elon Musk wants to buy Cursor for $60B</div>
+<div class="kpi-snippet">Friday&#x27;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&#x27;s posture in the platform layer. The first is Apple&#x27;s CEO transition: Tim Cook is reportedly stepping down after fourteen years and the board has sel...</div>
+<div class="kpi-score">Score 8.1</div>
+</a>
+  </div>
+
+  <div class="section-label">Filter</div>
+  <div class="filter-bar"><!--SORT_REORDERED-->
+    <div class="filter-row">
+      <select id="sort">
+        <option value="score">Sort: score ↓</option>
+        <option value="score-asc">Sort: score ↑</option>
+        <option value="date">Sort: date ↓</option>
+        <option value="multi">Sort: multi-source first</option>
+      </select>
+      <input type="search" id="search" placeholder="Search titles, tags, sources, summaries…">
+      <div class="slider-block">
+        <label class="field">Min score</label>
+        <input type="range" id="min-score" min="0" max="10" step="0.1" value="6.5">
+        <span class="slider-val" id="min-score-val">6.5</span>
+      </div>
+      <label class="field" style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="only-multi"> Multi-source only</label>
+    </div>
+    <div class="filter-row cat-row">
+      <div class="cat-header">
+        <label class="field" style="min-width:90px;">Categories:</label>
+        <div class="filter-actions">
+        <button class="btn" id="all-cats">All</button>
+        <button class="btn" id="no-cats">None</button>
+        <button class="btn" id="reset-all">Reset</button>
+      </div>
+      </div>
+      <div class="chip-group" id="cat-chips"><label class="cat-chip"><input type="checkbox" value="agents" checked> <span class="dot" style="background:#5ee0b7"></span>Agents &amp; Tool Use <span class="cnt">4</span><button type="button" class="pri-toggle" data-cat="agents" aria-label="Toggle priority for agents" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="ai_coding" checked> <span class="dot" style="background:#ffd479"></span>AI Coding <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="ai_coding" aria-label="Toggle priority for ai_coding" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="ai_science" checked> <span class="dot" style="background:#9affd3"></span>AI for Science <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="ai_science" aria-label="Toggle priority for ai_science" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="efficiency" checked> <span class="dot" style="background:#f5e16e"></span>Efficiency <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="efficiency" aria-label="Toggle priority for efficiency" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="evals" checked> <span class="dot" style="background:#ffd479"></span>Evaluations &amp; Benchmarks <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="evals" aria-label="Toggle priority for evals" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="frontier_llm" checked> <span class="dot" style="background:#7c9cff"></span>Frontier LLMs <span class="cnt">4</span><button type="button" class="pri-toggle" data-cat="frontier_llm" aria-label="Toggle priority for frontier_llm" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="generative_media" checked> <span class="dot" style="background:#d79cff"></span>Generative Media <span class="cnt">4</span><button type="button" class="pri-toggle" data-cat="generative_media" aria-label="Toggle priority for generative_media" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="gov_defense" checked> <span class="dot" style="background:#e0b46c"></span>Government &amp; Defense <span class="cnt">15</span><button type="button" class="pri-toggle" data-cat="gov_defense" aria-label="Toggle priority for gov_defense" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="industry" checked> <span class="dot" style="background:#ffa64d"></span>Industry <span class="cnt">6</span><button type="button" class="pri-toggle" data-cat="industry" aria-label="Toggle priority for industry" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="infra" checked> <span class="dot" style="background:#d9d9d9"></span>Infrastructure <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="infra" aria-label="Toggle priority for infra" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="multimodal" checked> <span class="dot" style="background:#8cc9ff"></span>Multimodal <span class="cnt">3</span><button type="button" class="pri-toggle" data-cat="multimodal" aria-label="Toggle priority for multimodal" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="post_training" checked> <span class="dot" style="background:#c0ff7a"></span>Post-Training <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="post_training" aria-label="Toggle priority for post_training" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="research" checked> <span class="dot" style="background:#9aa0a6"></span>Research <span class="cnt">4</span><button type="button" class="pri-toggle" data-cat="research" aria-label="Toggle priority for research" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="robotic_autonomy" checked> <span class="dot" style="background:#ff8aa8"></span>Robotic Autonomy <span class="cnt">1</span><button type="button" class="pri-toggle" data-cat="robotic_autonomy" aria-label="Toggle priority for robotic_autonomy" title="Toggle priority (boosts score for this category)"></button></label><label class="cat-chip"><input type="checkbox" value="safety_policy" checked> <span class="dot" style="background:#ff7a7a"></span>Safety, Policy &amp; Regulation <span class="cnt">6</span><button type="button" class="pri-toggle" data-cat="safety_policy" aria-label="Toggle priority for safety_policy" title="Toggle priority (boosts score for this category)"></button></label></div>
+    </div>
+    <div class="filter-row">
+      <label class="field" style="min-width:90px;">Source types:</label>
+      <div class="chip-group" id="srctype-chips"><label class="cat-chip"><input type="checkbox" value="aggregator" checked data-srctype> aggregator</label><label class="cat-chip"><input type="checkbox" value="arxiv" checked data-srctype> arxiv</label><label class="cat-chip"><input type="checkbox" value="blog" checked data-srctype> blog</label><label class="cat-chip"><input type="checkbox" value="community" checked data-srctype> community</label><label class="cat-chip"><input type="checkbox" value="magazine" checked data-srctype> magazine</label><label class="cat-chip"><input type="checkbox" value="news" checked data-srctype> news</label><label class="cat-chip"><input type="checkbox" value="newsletter" checked data-srctype> newsletter</label><label class="cat-chip"><input type="checkbox" value="podcast" checked data-srctype> podcast</label><label class="cat-chip"><input type="checkbox" value="youtube" checked data-srctype> youtube</label></div>
+    </div>
+  </div>
+
+  <div class="count-line">
+    <span>Showing <b id="shown-count">53</b> of <b>53</b> items</span>
+    <span id="active-filters" class="muted"></span>
+  </div>
+  <div class="items" id="items">
+<div id="item-1" class="item-wrap"><article class="item" data-score="8.7" data-cat="frontier_llm" data-multi="1" data-srccount="3" data-search="deepseek v4 deep dive: 1.6t-a49b pro / 284b-a13b flash, runnable on huawei ascend frontier_llm frontier llms latent space mit tech review ai ai explained the deepseek v4 follow-up coverage that landed friday and saturday is denser than the initial thursday drop and has shifted the framing of the model. latent space&#x27;s ainews newsletter on saturday morning leads with the hardware-sovereignty angle: v4 in both its sizes — pro at one point six trillion total parameters with forty-nine billion active and flash at two hundred eighty-four billion total with thirteen billion active — is now confirmed runnable on huawei ascend chips, not just on nvidia. that detail is being read as the practical end of the export-control bottleneck for chinese frontier deployments, since ascend supply is domestic and the v4 inference stack appears to be hand-tuned for the ascend memory hierarchy. latent space frames the release as deepseek stepping out of the benchmark-leadership game — v4 is no longer claiming to top the public leaderboards — and into a compute-economics game, where the relevant comparison is intelligence per dollar at deployment. the prodigal-tiger-returns metaphor in the headline captures both: deepseek skipped a quarter of public model news entirely between v three point two speciale in november and now, then dropped two preview models with full open weights and aggressive pricing in one week.
+
+mit technology review&#x27;s friday piece, three reasons why deepseek&#x27;s new model matters, takes a different cut. the first reason is the size milestone — at one point six trillion total parameters under mit license, v4 pro is the largest open-weights model ever released, larger than kimi k two point six at one point one trillion and twice the size of v three point two. the second is the disclosed training cost, which deepseek continues to claim is roughly an order of magnitude below comparable western runs; the report notes the same caveats every analyst has been raising, namely that the figure excludes prior research compute and likely undersells the real total, but also notes that even a charitable correction leaves deepseek noticeably ahead on cost efficiency. the third reason, and the most consequential for downstream deployments, is pricing: v4 flash at fourteen cents per million input tokens and twenty-eight cents output now sits below gpt five point four nano, gemini three point one flash lite, and claude haiku four point five on every dimension, and v4 pro at one dollar seventy four input and three forty eight output is roughly a fifth the price of gpt five point four and an order of magnitude cheaper on output than claude opus four point seven or gpt-5.5. the piece closes on the export-control angle latent space also flags — that the marginal effect of restrictions on chinese ai capability has diminished sharply.
+
+ai explained&#x27;s friday video synthesizes both threads under a single &#x27;compute war intensifies&#x27; frame. the argument is that the dominant axis of m">
+<div class="item-head">
+  <div class="rank">#1</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.latent.space/p/ainews-deepseek-v4-pro-16t-a49b-and" target="_blank" rel="noopener">DeepSeek V4 deep dive: 1.6T-A49B Pro / 284B-A13B Flash, runnable on Huawei Ascend</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="frontier_llm" style="--pill-color:#7c9cff">Frontier LLMs</span>
+      <span class="date">2026-04-25</span>
+      <span class="srcs"><span class="src-chip">Latent Space</span><span class="src-chip">MIT Tech Review AI</span><span class="src-chip">AI Explained</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">8.7</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 8.5</span>
+      <span>Im 8.0</span>
+      <span>P 8.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The DeepSeek V4 follow-up coverage that landed Friday and Saturday is denser than the initial Thursday drop and has shifted the framing of the model. Latent Space&#x27;s AINews newsletter on Saturday morning leads with the hardware-sovereignty angle: V4 in both its sizes — Pro at one point six trillion total parameters with forty-nine billion active and Flash at two hundred eighty-four billion total with thirteen billion active — is now confirmed runnable on Huawei Ascend chips, not just on NVIDIA. That detail is being read as the practical end of the export-control bottleneck for Chinese frontier deployments, since Ascend supply is domestic and the V4 inference stack appears to be hand-tuned for the Ascend memory hierarchy. Latent Space frames the release as DeepSeek stepping out of the benchmark-leadership game — V4 is no longer claiming to top the public leaderboards — and into a compute-economics game, where the relevant comparison is intelligence per dollar at deployment. The prodigal-tiger-returns metaphor in the headline captures both: DeepSeek skipped a quarter of public model news entirely between V three point two Speciale in November and now, then dropped two preview models with full open weights and aggressive pricing in one week.</p><p>MIT Technology Review&#x27;s Friday piece, Three Reasons Why DeepSeek&#x27;s New Model Matters, takes a different cut. The first reason is the size milestone — at one point six trillion total parameters under MIT license, V4 Pro is the largest open-weights model ever released, larger than Kimi K two point six at one point one trillion and twice the size of V three point two. The second is the disclosed training cost, which DeepSeek continues to claim is roughly an order of magnitude below comparable Western runs; the report notes the same caveats every analyst has been raising, namely that the figure excludes prior research compute and likely undersells the real total, but also notes that even a charitable correction leaves DeepSeek noticeably ahead on cost efficiency. The third reason, and the most consequential for downstream deployments, is pricing: V4 Flash at fourteen cents per million input tokens and twenty-eight cents output now sits below GPT five point four Nano, Gemini three point one Flash Lite, and Claude Haiku four point five on every dimension, and V4 Pro at one dollar seventy four input and three forty eight output is roughly a fifth the price of GPT five point four and an order of magnitude cheaper on output than Claude Opus four point seven or GPT-5.5. The piece closes on the export-control angle Latent Space also flags — that the marginal effect of restrictions on Chinese AI capability has diminished sharply.</p><p>AI Explained&#x27;s Friday video synthesizes both threads under a single &#x27;compute war intensifies&#x27; frame. The argument is that the dominant axis of model competition has shifted from one-dimensional intelligence scores to intelligence-per-dollar Pareto curves, and that V4 has now planted a flag at the cost-efficient frontier in a way no closed lab can match without disclosing pricing. The video also highlights the qualitative gap that remains — V4&#x27;s tool-use, agentic-coding, and reasoning behaviours are described as roughly Claude four point five class, not Opus four point seven or GPT-5.5 class, but the open-weights property and the cost differential more than compensate for many production workloads. Together the three takes form the consensus view that V4 is the new floor for what &#x27;good enough&#x27; open-weights frontier-class deployment looks like, and that the next round of pricing pressure on US-hosted APIs is now baked in.</p></div>
+<div class="perspectives"><div class="persp-label">How it was discussed</div><ul class="persp-list"><li><strong>Latent Space</strong> emphasized that V4 is now runnable on Huawei Ascend chips — a hardware-sovereignty signal beyond the parameter count.</li><li><strong>MIT Tech Review</strong> framed V4 around three reasons it matters: training-cost claims, MIT-licensed open weights at frontier scale, and pricing pressure on US-hosted APIs.</li><li><strong>AI Explained</strong> placed V4 alongside GPT-5.5 in a single &#x27;compute war intensifies&#x27; frame, arguing the relevant axis is now intelligence-per-dollar Pareto curves rather than headline benchmarks.</li></ul></div>
+<div class="tags"><span class="tag">deepseek</span><span class="tag">v4</span><span class="tag">open-weights</span><span class="tag">moe</span><span class="tag">huawei-ascend</span></div>
+</article></div>
+<div id="item-2" class="item-wrap"><article class="item" data-score="8.5" data-cat="industry" data-multi="0" data-srccount="1" data-search="google to invest up to $40b in anthropic in cash and compute industry industry techcrunch ai techcrunch&#x27;s reporting on friday details google&#x27;s commitment to invest up to forty billion dollars in anthropic in a mix of cash and google cloud compute credits, structured to be drawn against incrementally as anthropic scales its training infrastructure. the number puts google&#x27;s total exposure to anthropic in roughly the same order of magnitude as microsoft&#x27;s exposure to openai and follows anthropic&#x27;s separate announcement monday of an expanded amazon collaboration for up to five gigawatts of new compute. read together, the two deals mean anthropic is now contracting compute capacity across both major cloud incumbents — aws for trainium-based pre-training and inference, google cloud for tpu access — at a scale that puts the lab&#x27;s total compute footprint into the hundreds of thousands of accelerators by the time the announced commitments come fully online.
+
+the strategic shape is unusual. the amazon partnership has been the headline relationship since 2023, with anthropic running its largest training jobs on trainium 2 and now trainium 3, and amazon distributing claude through bedrock as the lab&#x27;s primary cloud customer surface. the google relationship has historically been smaller, focused on tpu access for select workloads. the forty-billion-dollar commitment, if drawn down at anything like the headline rate, repositions google as a co-equal infrastructure backer rather than a secondary cloud option, and aligns with sundar pichai&#x27;s recent posture of treating ai capacity as a multi-vendor strategic priority rather than a google-internal advantage. for google specifically, the deal locks in anthropic as a tpu customer and gives google&#x27;s silicon programme another large frontier-lab workload to optimise against — a hedge against the possibility that nvidia&#x27;s pricing power continues to dominate the alternative.
+
+for anthropic, the read is that the company is now financed to keep pace with openai&#x27;s compute trajectory through at least the next two model generations after opus four point seven. the fundraise pattern — drawing from both cloud incumbents simultaneously rather than picking one — means the lab maintains optionality on training stack and avoids the lock-in dynamics that have shaped openai&#x27;s relationship with microsoft. it also continues a pattern across the frontier-lab landscape where capital is moving in increments of tens of billions of dollars at a time, and where the marginal model of competitive moat has shifted away from algorithmic innovation toward access to power, land, transformer capacity, and chip allocation. the downstream policy question — already being raised by analysts — is what concentration of compute access this implies for us frontier labs versus chinese open-weights alternatives like deepseek v4, which became fully mit-licensed and huawei-ascend-runnable the same week. the two stories together represent the shape of competiti">
+<div class="item-head">
+  <div class="rank">#2</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/" target="_blank" rel="noopener">Google to invest up to $40B in Anthropic in cash and compute</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">TechCrunch AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">8.5</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 8.5</span>
+      <span>Im 8.0</span>
+      <span>P 8.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>TechCrunch&#x27;s reporting on Friday details Google&#x27;s commitment to invest up to forty billion dollars in Anthropic in a mix of cash and Google Cloud compute credits, structured to be drawn against incrementally as Anthropic scales its training infrastructure. The number puts Google&#x27;s total exposure to Anthropic in roughly the same order of magnitude as Microsoft&#x27;s exposure to OpenAI and follows Anthropic&#x27;s separate announcement Monday of an expanded Amazon collaboration for up to five gigawatts of new compute. Read together, the two deals mean Anthropic is now contracting compute capacity across both major cloud incumbents — AWS for Trainium-based pre-training and inference, Google Cloud for TPU access — at a scale that puts the lab&#x27;s total compute footprint into the hundreds of thousands of accelerators by the time the announced commitments come fully online.</p><p>The strategic shape is unusual. The Amazon partnership has been the headline relationship since 2023, with Anthropic running its largest training jobs on Trainium 2 and now Trainium 3, and Amazon distributing Claude through Bedrock as the lab&#x27;s primary cloud customer surface. The Google relationship has historically been smaller, focused on TPU access for select workloads. The forty-billion-dollar commitment, if drawn down at anything like the headline rate, repositions Google as a co-equal infrastructure backer rather than a secondary cloud option, and aligns with Sundar Pichai&#x27;s recent posture of treating AI capacity as a multi-vendor strategic priority rather than a Google-internal advantage. For Google specifically, the deal locks in Anthropic as a TPU customer and gives Google&#x27;s silicon programme another large frontier-lab workload to optimise against — a hedge against the possibility that NVIDIA&#x27;s pricing power continues to dominate the alternative.</p><p>For Anthropic, the read is that the company is now financed to keep pace with OpenAI&#x27;s compute trajectory through at least the next two model generations after Opus four point seven. The fundraise pattern — drawing from both cloud incumbents simultaneously rather than picking one — means the lab maintains optionality on training stack and avoids the lock-in dynamics that have shaped OpenAI&#x27;s relationship with Microsoft. It also continues a pattern across the frontier-lab landscape where capital is moving in increments of tens of billions of dollars at a time, and where the marginal model of competitive moat has shifted away from algorithmic innovation toward access to power, land, transformer capacity, and chip allocation. The downstream policy question — already being raised by analysts — is what concentration of compute access this implies for US frontier labs versus Chinese open-weights alternatives like DeepSeek V4, which became fully MIT-licensed and Huawei-Ascend-runnable the same week. The two stories together represent the shape of competition heading into the back half of 2026: capital-heavy Western labs versus open-weights Chinese alternatives running on domestic silicon.</p></div>
+
+<div class="tags"><span class="tag">anthropic</span><span class="tag">google</span><span class="tag">funding</span><span class="tag">tpu</span></div>
+</article></div>
+<div id="item-3" class="item-wrap"><article class="item" data-score="8.1" data-cat="industry" data-multi="0" data-srccount="1" data-search="apple&#x27;s new ceo, and why elon musk wants to buy cursor for $60b industry industry techcrunch ai friday&#x27;s reporting in techcrunch covers two intertwined transitions that together reshape the ai-coding-assistant market and apple&#x27;s posture in the platform layer. the first is apple&#x27;s ceo transition: tim cook is reportedly stepping down after fourteen years and the board has selected a successor — naming details have been confirmed in friday&#x27;s coverage and stratechery&#x27;s same-day weekly roundup positions the change as the formal end of the cook era. the relevance for ai is that cook&#x27;s tenure has been unusually conservative on ai strategy compared to peers, and the transition coincides with apple intelligence still trailing google&#x27;s gemini integration and microsoft&#x27;s copilot in both capability and platform integration. whether the new ceo accelerates apple&#x27;s posture — including possible acquisitions in the ai infrastructure or models space — is now the open question.
+
+the second story, and the one with the larger valuation, is elon musk&#x27;s reported sixty-billion-dollar bid to acquire cursor (anysphere). cursor has become the dominant ai-first ide among professional developers in the last eighteen months, with annual recurring revenue now reportedly past one billion dollars and a developer base that includes most of the major us tech companies under enterprise contracts. the sixty-billion valuation is roughly twice the company&#x27;s most recent secondary-market mark, and would make cursor the largest ai-native acquisition in history if it closed. musk&#x27;s stated motivation is to fold cursor into a broader xai/x stack alongside grok and tesla&#x27;s autonomy programme, framing ai coding as the on-ramp to general-purpose agentic tooling.
+
+the strategic question is whether cursor takes the offer. anysphere&#x27;s leadership has been on a clear independent-company path with multiple primary fundraises in the last year and a board structure built around founder control. the price is high enough that fiduciary pressure from existing investors will be real, but the strategic fit with xai is contested — cursor&#x27;s product depth depends on tight integration with anthropic&#x27;s claude code and openai&#x27;s codex backends, and a musk-owned cursor would force the company to favour grok in ways that would likely damage the developer experience. stratechery&#x27;s weekly column on friday read the deal as more likely to fail than succeed, with the more plausible outcome being a counter-bid from one of the major hyperscalers if anysphere does decide to sell. either way, the bid resets the valuation conversation around ai coding tools — cognition&#x27;s devin, github copilot, and replit&#x27;s agent v2 all become more expensive prospective acquisitions overnight — and the m&amp;a picture for the next two quarters will be shaped by where cursor lands. apple cursor musk m&amp;a ai_coding">
+<div class="item-head">
+  <div class="rank">#3</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://techcrunch.com/podcast/apples-new-ceo-and-why-elon-musk-wants-to-buy-cursor-for-60b/" target="_blank" rel="noopener">Apple&#x27;s new CEO, and why Elon Musk wants to buy Cursor for $60B</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">TechCrunch AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">8.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 7.5</span>
+      <span>Im 7.5</span>
+      <span>P 8.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Friday&#x27;s reporting in TechCrunch covers two intertwined transitions that together reshape the AI-coding-assistant market and Apple&#x27;s posture in the platform layer. The first is Apple&#x27;s CEO transition: Tim Cook is reportedly stepping down after fourteen years and the board has selected a successor — naming details have been confirmed in Friday&#x27;s coverage and Stratechery&#x27;s same-day weekly roundup positions the change as the formal end of the Cook era. The relevance for AI is that Cook&#x27;s tenure has been unusually conservative on AI strategy compared to peers, and the transition coincides with Apple Intelligence still trailing Google&#x27;s Gemini integration and Microsoft&#x27;s Copilot in both capability and platform integration. Whether the new CEO accelerates Apple&#x27;s posture — including possible acquisitions in the AI infrastructure or models space — is now the open question.</p><p>The second story, and the one with the larger valuation, is Elon Musk&#x27;s reported sixty-billion-dollar bid to acquire Cursor (Anysphere). Cursor has become the dominant AI-first IDE among professional developers in the last eighteen months, with annual recurring revenue now reportedly past one billion dollars and a developer base that includes most of the major US tech companies under enterprise contracts. The sixty-billion valuation is roughly twice the company&#x27;s most recent secondary-market mark, and would make Cursor the largest AI-native acquisition in history if it closed. Musk&#x27;s stated motivation is to fold Cursor into a broader xAI/X stack alongside Grok and Tesla&#x27;s autonomy programme, framing AI coding as the on-ramp to general-purpose agentic tooling.</p><p>The strategic question is whether Cursor takes the offer. Anysphere&#x27;s leadership has been on a clear independent-company path with multiple primary fundraises in the last year and a board structure built around founder control. The price is high enough that fiduciary pressure from existing investors will be real, but the strategic fit with xAI is contested — Cursor&#x27;s product depth depends on tight integration with Anthropic&#x27;s Claude Code and OpenAI&#x27;s Codex backends, and a Musk-owned Cursor would force the company to favour Grok in ways that would likely damage the developer experience. Stratechery&#x27;s weekly column on Friday read the deal as more likely to fail than succeed, with the more plausible outcome being a counter-bid from one of the major hyperscalers if Anysphere does decide to sell. Either way, the bid resets the valuation conversation around AI coding tools — Cognition&#x27;s Devin, GitHub Copilot, and Replit&#x27;s Agent V2 all become more expensive prospective acquisitions overnight — and the M&amp;A picture for the next two quarters will be shaped by where Cursor lands.</p></div>
+
+<div class="tags"><span class="tag">apple</span><span class="tag">cursor</span><span class="tag">musk</span><span class="tag">m&amp;a</span><span class="tag">ai_coding</span></div>
+</article></div>
+<div id="item-4" class="item-wrap"><article class="item" data-score="7.2" data-cat="frontier_llm" data-multi="0" data-srccount="1" data-search="openai publishes the gpt-5.5 prompting guide frontier_llm frontier llms simon willison gpt-5.5 prompting guide now that gpt-5.5 is available in the api , openai have released a wealth of useful tips on how best to prompt the new model. here&#x27;s a neat trick they recommend for applications that might spend considerable time thinking before returning a user-visible response: before any tool calls for a multi-step task, send a short user-visible update that acknowledges the request and states the first step. keep it to one or two sentences. i&#x27;ve already noticed their codex app doing this, and it does make longer running tasks feel less like the model has crashed. openai suggest running the following in codex to upgrade your existing code using advice embedded in their openai-docs skill: $openai-docs migrate this project to gpt-5.5 the upgrade guide the coding agent will follow is this one , which even includes light instructions on how to rewrite prompts to better fit the model. also relevant is the using gpt-5.5 guide , which opens with this warning: to get the most out of gpt-5.5, treat it as a new model family to tune for, not a drop-in replacement for gpt-5.2 or gpt-5.4 . begin migration with a fresh baseline instead of carrying over every instruction from an older prompt stack. start with the smallest prompt that preserves the product contract, then tune reasoning effort, verbosity, tool descriptions, and output format against representative examples. interesting to see openai recommend starting from scratch rather than trusting that existing prompts optimized for previous models will continue to work effectively with gpt-5.5. tags: ai , openai , prompt-engineering , generative-ai , llms , gpt gpt-5.5 prompting openai">
+<div class="item-head">
+  <div class="rank">#4</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://simonwillison.net/2026/Apr/25/gpt-5-5-prompting-guide/#atom-everything" target="_blank" rel="noopener">OpenAI publishes the GPT-5.5 prompting guide</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="frontier_llm" style="--pill-color:#7c9cff">Frontier LLMs</span>
+      <span class="date">2026-04-25</span>
+      <span class="srcs"><span class="src-chip">Simon Willison</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">7.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 7.0</span>
+      <span>Im 6.5</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>GPT-5.5 prompting guide Now that GPT-5.5 is available in the API , OpenAI have released a wealth of useful tips on how best to prompt the new model. Here&#x27;s a neat trick they recommend for applications that might spend considerable time thinking before returning a user-visible response: Before any tool calls for a multi-step task, send a short user-visible update that acknowledges the request and states the first step. Keep it to one or two sentences. I&#x27;ve already noticed their Codex app doing this, and it does make longer running tasks feel less like the model has crashed. OpenAI suggest running the following in Codex to upgrade your existing code using advice embedded in their openai-docs skill: $openai-docs migrate this project to gpt-5.5 The upgrade guide the coding agent will follow is this one , which even includes light instructions on how to rewrite prompts to better fit the model. Also relevant is the Using GPT-5.5 guide , which opens with this warning: To get the most out of GPT-5.5, treat it as a new model family to tune for, not a drop-in replacement for gpt-5.2 or gpt-5.4 . Begin migration with a fresh baseline instead of carrying over every instruction from an older prompt stack. Start with the smallest prompt that preserves the product contract, then tune reasoning effort, verbosity, tool descriptions, and output format against representative examples. Interesting to see OpenAI recommend starting from scratch rather than trusting that existing prompts optimized for previous models will continue to work effectively with GPT-5.5. Tags: ai , openai , prompt-engineering , generative-ai , llms , gpt</p></div>
+
+<div class="tags"><span class="tag">gpt-5.5</span><span class="tag">prompting</span><span class="tag">openai</span></div>
+</article></div>
+<div id="item-5" class="item-wrap"><article class="item" data-score="7.2" data-cat="gov_defense" data-multi="1" data-srccount="3" data-search="space force selects 12 firms to develop golden dome space-based interceptors gov_defense government &amp; defense defense one breaking defense defensescoop defense giants and startups vie to create orbital defenses—even as the program’s czar concedes they may be unaffordable. space-force golden-dome interceptors missile-defense">
+<div class="item-head">
+  <div class="rank">#5</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.defenseone.com/threats/2026/04/space-force-picks-firms-develop-golden-domes-space-based-interceptors/413118/" target="_blank" rel="noopener">Space Force selects 12 firms to develop Golden Dome space-based interceptors</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Defense One</span><span class="src-chip">Breaking Defense</span><span class="src-chip">DefenseScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">7.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.5</span>
+      <span>Im 7.0</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Defense giants and startups vie to create orbital defenses—even as the program’s czar concedes they may be unaffordable.</p></div>
+<div class="perspectives"><div class="persp-label">How it was discussed</div><ul class="persp-list"><li><strong>Defense One</strong> focused on the policy framing — Golden Dome as the administration&#x27;s strategic-defense centerpiece, twelve awardees signal broad-base contracting rather than down-selection.</li><li><strong>Breaking Defense</strong> emphasized the architecture story: how interceptors integrate with the next-gen space layer the Pentagon has been describing this year.</li><li><strong>DefenseScoop</strong> named the 12 awardees and noted the delivery-path expectations attached to the contracts.</li></ul></div>
+<div class="tags"><span class="tag">space-force</span><span class="tag">golden-dome</span><span class="tag">interceptors</span><span class="tag">missile-defense</span></div>
+</article></div>
+<div id="item-6" class="item-wrap"><article class="item" data-score="7.2" data-cat="research" data-multi="1" data-srccount="2" data-search="there will be a scientific theory of deep learning — simon, kunin et al. (cross-source: hn + generally intelligent podcast) research research hn ai generally intelligent the simon/kunin et al. position paper on &#x27;learning mechanics&#x27; continued its run on hacker news today, with companion generally intelligent podcast coverage interviewing co-authors jamie simon and daniel kunin. the paper argues a coherent scientific theory of deep learning is now emerging across topics like neural-tangent kernels, feature learning, training dynamics, and generalization — and proposes &#x27;learning mechanics&#x27; as a unifying name. hn comments split between excitement about the synthesis and pushback that &#x27;mechanics&#x27; over-promises predictive power the field doesn&#x27;t yet have. theory learning-mechanics interpretability">
+<div class="item-head">
+  <div class="rank">#6</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21691" target="_blank" rel="noopener">There Will Be a Scientific Theory of Deep Learning — Simon, Kunin et al. (cross-source: HN + Generally Intelligent podcast)</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="research" style="--pill-color:#9aa0a6">Research</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">HN AI</span><span class="src-chip">Generally Intelligent</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">7.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 7.0</span>
+      <span>P 7.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The Simon/Kunin et al. position paper on &#x27;learning mechanics&#x27; continued its run on Hacker News today, with companion Generally Intelligent podcast coverage interviewing co-authors Jamie Simon and Daniel Kunin. The paper argues a coherent scientific theory of deep learning is now emerging across topics like neural-tangent kernels, feature learning, training dynamics, and generalization — and proposes &#x27;learning mechanics&#x27; as a unifying name. HN comments split between excitement about the synthesis and pushback that &#x27;mechanics&#x27; over-promises predictive power the field doesn&#x27;t yet have.</p></div>
+<div class="perspectives"><div class="persp-label">How it was discussed</div><ul class="persp-list"><li><strong>Generally Intelligent</strong> podcast positioned the paper as a coming-of-age signal — DL as a maturing science.</li><li><strong>HN top comments</strong> flagged that NTK-era analyses already claim much of this turf and that the &#x27;mechanics&#x27; branding may overreach what&#x27;s actually predictive.</li></ul></div>
+<div class="tags"><span class="tag">theory</span><span class="tag">learning-mechanics</span><span class="tag">interpretability</span></div>
+</article></div>
+<div id="item-7" class="item-wrap"><article class="item" data-score="7.1" data-cat="frontier_llm" data-multi="0" data-srccount="1" data-search="mit tech review: three reasons deepseek&#x27;s new model matters frontier_llm frontier llms mit tech review ai mit technology review&#x27;s analysis frames why deepseek v4 (covered yesterday) matters in three ways: (1) it&#x27;s the largest open-weights frontier-class model to date and ships under mit license; (2) the disclosed training-cost figures continue to undercut us-hosted competitors by an order of magnitude, putting downstream pricing pressure on commercial apis; (3) the release pattern — preview drop with full report pending — keeps the open-weights field on a tight cadence. the piece also flags us-export-control commentary as the policy story to watch. deepseek v4 analysis open-weights">
+<div class="item-head">
+  <div class="rank">#7</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/" target="_blank" rel="noopener">MIT Tech Review: three reasons DeepSeek&#x27;s new model matters</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="frontier_llm" style="--pill-color:#7c9cff">Frontier LLMs</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">MIT Tech Review AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">7.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.5</span>
+      <span>Im 7.0</span>
+      <span>P 6.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>MIT Technology Review&#x27;s analysis frames why DeepSeek V4 (covered yesterday) matters in three ways: (1) it&#x27;s the largest open-weights frontier-class model to date and ships under MIT license; (2) the disclosed training-cost figures continue to undercut US-hosted competitors by an order of magnitude, putting downstream pricing pressure on commercial APIs; (3) the release pattern — preview drop with full report pending — keeps the open-weights field on a tight cadence. The piece also flags US-export-control commentary as the policy story to watch.</p></div>
+
+<div class="tags"><span class="tag">deepseek</span><span class="tag">v4</span><span class="tag">analysis</span><span class="tag">open-weights</span></div>
+</article></div>
+<div id="item-8" class="item-wrap"><article class="item" data-score="6.9" data-cat="gov_defense" data-multi="1" data-srccount="2" data-search="us navy ordered to &#x27;shoot and kill&#x27; alleged iranian mine-laying boats; mine-clearing prioritized gov_defense government &amp; defense defense one defensescoop president trump&#x27;s directive to the us navy authorized lethal force against suspected iranian mine-laying activity in the strait of hormuz, in tension with the formally declared ceasefire. defensescoop&#x27;s follow-up details the immediate shift in operational priorities toward mine-clearing assets, including unmanned surface vessels and explosive ordnance disposal teams. notable for the ai-relevance angle because the us mine-warfare modernization plan leans heavily on autonomy-enabled systems. us-navy iran mine-warfare rules-of-engagement">
+<div class="item-head">
+  <div class="rank">#8</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.defenseone.com/threats/2026/04/us-navy-ordered-shoot-and-kill-suspected-iranian-mine-laying-boats-amid-ceasefire/413093/" target="_blank" rel="noopener">US Navy ordered to &#x27;shoot and kill&#x27; alleged Iranian mine-laying boats; mine-clearing prioritized</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Defense One</span><span class="src-chip">DefenseScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.5</span>
+      <span>Im 6.0</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>President Trump&#x27;s directive to the US Navy authorized lethal force against suspected Iranian mine-laying activity in the Strait of Hormuz, in tension with the formally declared ceasefire. DefenseScoop&#x27;s follow-up details the immediate shift in operational priorities toward mine-clearing assets, including unmanned surface vessels and explosive ordnance disposal teams. Notable for the AI-relevance angle because the US mine-warfare modernization plan leans heavily on autonomy-enabled systems.</p></div>
+<div class="perspectives"><div class="persp-label">How it was discussed</div><ul class="persp-list"><li><strong>Defense One</strong> framed the rules-of-engagement story.</li><li><strong>DefenseScoop</strong> focused on the mine-clearing asset prioritization that follows from the directive.</li></ul></div>
+<div class="tags"><span class="tag">us-navy</span><span class="tag">iran</span><span class="tag">mine-warfare</span><span class="tag">rules-of-engagement</span></div>
+</article></div>
+<div id="item-9" class="item-wrap"><article class="item" data-score="6.6" data-cat="ai_science" data-multi="0" data-srccount="1" data-search="mit tech review: health-care ai is here, but we don&#x27;t know if it actually helps patients ai_science ai for science mit tech review ai tech review surveys clinical ai deployments and the evidence gap behind them: triage, ambient-scribe, and imaging-assist models are being approved and rolled out faster than randomized controlled trials can validate patient-outcome benefit. the piece notes that fda pathways currently wave through models on bench performance and post-market monitoring, but there are very few well-powered prospective trials measuring whether any of these tools actually improve diagnosis, treatment, or mortality at the population level. healthcare clinical-evidence deployment">
+<div class="item-head">
+  <div class="rank">#9</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.technologyreview.com/2026/04/24/1136352/health-care-ai-dont-know-actually-helps-patients/" target="_blank" rel="noopener">MIT Tech Review: health-care AI is here, but we don&#x27;t know if it actually helps patients</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="ai_science" style="--pill-color:#9affd3">AI for Science</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">MIT Tech Review AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.6</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 7.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Tech Review surveys clinical AI deployments and the evidence gap behind them: triage, ambient-scribe, and imaging-assist models are being approved and rolled out faster than randomized controlled trials can validate patient-outcome benefit. The piece notes that FDA pathways currently wave through models on bench performance and post-market monitoring, but there are very few well-powered prospective trials measuring whether any of these tools actually improve diagnosis, treatment, or mortality at the population level.</p></div>
+
+<div class="tags"><span class="tag">healthcare</span><span class="tag">clinical-evidence</span><span class="tag">deployment</span></div>
+</article></div>
+<div id="item-10" class="item-wrap"><article class="item" data-score="6.4" data-cat="robotic_autonomy" data-multi="0" data-srccount="1" data-search="darpa shares &#x27;deep thoughts&#x27; solicitation for autonomous underwater drones robotic_autonomy robotic autonomy defensescoop darpa released the &#x27;deep thoughts&#x27; solicitation seeking autonomous underwater vehicles capable of long-endurance loitering and decision-making in contested undersea environments. the solicitation language emphasizes onboard autonomy that can run with intermittent connectivity to surface assets. aligns with the broader dod push toward attritable autonomous platforms across domains; underwater is the slowest-moving of the three but is now drawing real investment. darpa underwater autonomy uuv">
+<div class="item-head">
+  <div class="rank">#10</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://defensescoop.com/2026/04/24/darpa-autonomous-underwater-vehicle-auv-program-deep-thoughts/" target="_blank" rel="noopener">DARPA shares &#x27;Deep Thoughts&#x27; solicitation for autonomous underwater drones</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="robotic_autonomy" style="--pill-color:#ff8aa8">Robotic Autonomy</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">DefenseScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.4</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 6.5</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>DARPA released the &#x27;Deep Thoughts&#x27; solicitation seeking autonomous underwater vehicles capable of long-endurance loitering and decision-making in contested undersea environments. The solicitation language emphasizes onboard autonomy that can run with intermittent connectivity to surface assets. Aligns with the broader DoD push toward attritable autonomous platforms across domains; underwater is the slowest-moving of the three but is now drawing real investment.</p></div>
+
+<div class="tags"><span class="tag">darpa</span><span class="tag">underwater</span><span class="tag">autonomy</span><span class="tag">uuv</span></div>
+</article></div>
+<div id="item-11" class="item-wrap"><article class="item" data-score="6.3" data-cat="industry" data-multi="0" data-srccount="1" data-search="meta&#x27;s loss is thinking machines&#x27; gain industry industry techcrunch ai meta has been poaching talent from thinking machines lab. but it&#x27;s a two-way street. meta thinking-machines talent mira-murati">
+<div class="item-head">
+  <div class="rank">#11</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://techcrunch.com/2026/04/24/metas-loss-is-thinking-machines-gain/" target="_blank" rel="noopener">Meta&#x27;s loss is Thinking Machines&#x27; gain</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">TechCrunch AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.3</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Meta has been poaching talent from Thinking Machines Lab. But it&#x27;s a two-way street.</p></div>
+
+<div class="tags"><span class="tag">meta</span><span class="tag">thinking-machines</span><span class="tag">talent</span><span class="tag">mira-murati</span></div>
+</article></div>
+<div id="item-12" class="item-wrap"><article class="item" data-score="6.3" data-cat="frontier_llm" data-multi="0" data-srccount="1" data-search="ai explained (youtube): gpt-5.5, deepseek v4, and the compute war frontier_llm frontier llms ai explained ai explained posted a video synthesis of the week&#x27;s frontier-model news: gpt-5.5 deep dive (capabilities, pricing, practical uses), deepseek v4 paper highlights and head-to-head comparisons, an interlude on mythos, a vibe-coded game built with gpt image 2, and 50 &#x27;data points you wouldn&#x27;t get from headlines&#x27;. video runs roughly 25 minutes; treats gpt-5.5 and v4 as two halves of the same compute-war frame. gpt-5.5 deepseek-v4 compute video">
+<div class="item-head">
+  <div class="rank">#12</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.youtube.com/watch?v=jz0rNhfAKo8" target="_blank" rel="noopener">AI Explained (YouTube): GPT-5.5, DeepSeek V4, and the compute war</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="frontier_llm" style="--pill-color:#7c9cff">Frontier LLMs</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">AI Explained</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.3</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>AI Explained posted a video synthesis of the week&#x27;s frontier-model news: GPT-5.5 deep dive (capabilities, pricing, practical uses), DeepSeek V4 paper highlights and head-to-head comparisons, an interlude on Mythos, a vibe-coded game built with GPT Image 2, and 50 &#x27;data points you wouldn&#x27;t get from headlines&#x27;. Video runs roughly 25 minutes; treats GPT-5.5 and V4 as two halves of the same compute-war frame.</p></div>
+
+<div class="tags"><span class="tag">gpt-5.5</span><span class="tag">deepseek-v4</span><span class="tag">compute</span><span class="tag">video</span></div>
+</article></div>
+<div id="item-13" class="item-wrap"><article class="item" data-score="6.2" data-cat="safety_policy" data-multi="0" data-srccount="1" data-search="anthropic publishes update on election safeguards safety_policy safety, policy &amp; regulation anthropic news anthropic published an update on the election-integrity safeguards built into claude — covering refusals around persuasion targeting, the prompt-injection / jailbreak red-team coverage they extended for the cycle, and the way the org partnered with election authorities and fact-check ngos through 2025–26. policy-page item rather than research output; still relevant given the timing. anthropic elections policy">
+<div class="item-head">
+  <div class="rank">#13</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic publishes update on election safeguards</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Anthropic News</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.0</span>
+      <span>Im 6.5</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Anthropic published an update on the election-integrity safeguards built into Claude — covering refusals around persuasion targeting, the prompt-injection / jailbreak red-team coverage they extended for the cycle, and the way the org partnered with election authorities and fact-check NGOs through 2025–26. Policy-page item rather than research output; still relevant given the timing.</p></div>
+
+<div class="tags"><span class="tag">anthropic</span><span class="tag">elections</span><span class="tag">policy</span></div>
+</article></div>
+<div id="item-14" class="item-wrap"><article class="item" data-score="6.2" data-cat="industry" data-multi="0" data-srccount="1" data-search="stratechery 2026.17: he came, he saw, he cooked — end of the tim cook era, cursor &amp; spacex, cold war 2.0 fronts industry industry stratechery stratechery&#x27;s weekly roundup covers tim cook&#x27;s exit from apple, the cursor/spacex/anysphere acquisition speculation, and ongoing us–china strategic-tech dynamics (the &#x27;cold war 2.0&#x27; framing thompson has been developing). for an ai-focused reader the meatiest threads are the cursor coverage — musk&#x27;s $60b bid is reported elsewhere in the digest — and how pricing and platform-control dynamics around ai coding tools are now squarely in m&amp;a scope. apple tim-cook cursor cold-war-2 weekly-roundup">
+<div class="item-head">
+  <div class="rank">#14</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://stratechery.com/2026/he-came-he-saw-he-cooked/" target="_blank" rel="noopener">Stratechery 2026.17: He Came, He Saw, He Cooked — end of the Tim Cook era, Cursor &amp; SpaceX, Cold War 2.0 fronts</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Stratechery</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 6.0</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Stratechery&#x27;s weekly roundup covers Tim Cook&#x27;s exit from Apple, the Cursor/SpaceX/Anysphere acquisition speculation, and ongoing US–China strategic-tech dynamics (the &#x27;Cold War 2.0&#x27; framing Thompson has been developing). For an AI-focused reader the meatiest threads are the Cursor coverage — Musk&#x27;s $60B bid is reported elsewhere in the digest — and how pricing and platform-control dynamics around AI coding tools are now squarely in M&amp;A scope.</p></div>
+
+<div class="tags"><span class="tag">apple</span><span class="tag">tim-cook</span><span class="tag">cursor</span><span class="tag">cold-war-2</span><span class="tag">weekly-roundup</span></div>
+</article></div>
+<div id="item-15" class="item-wrap"><article class="item" data-score="6.2" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="satellites at the center: inside the pentagon’s next-gen space architecture gov_defense government &amp; defense breaking defense from emerging data networks to missile tracking and cyber resilience, breaking defense’s latest ebook brings together essential reporting on the evolving role of satellites in national security.... defense">
+<div class="item-head">
+  <div class="rank">#15</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/satellites-at-the-center-inside-the-pentagons-next-gen-space-architecture/" target="_blank" rel="noopener">Satellites at the center: Inside the Pentagon’s next-gen space architecture</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 6.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>From emerging data networks to missile tracking and cyber resilience, Breaking Defense’s latest eBook brings together essential reporting on the evolving role of satellites in national security....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-16" class="item-wrap"><article class="item" data-score="6.2" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="pentagon’s munitions acceleration council identifies 14 ‘critical’ weapons for 2027 gov_defense government &amp; defense breaking defense “we’re making them put skin in the game … and we expect them to meet the ramp rates that they agree to. and, if they don’t, there’ll be penalties for them,” said jules “jay” hurst, who is performing the duties of the pentagon comptroller.... defense">
+<div class="item-head">
+  <div class="rank">#16</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/pentagons-munitions-acceleration-council-identifies-14-criticalweapons-for-2027/" target="_blank" rel="noopener">Pentagon’s Munitions Acceleration Council identifies 14 ‘critical’ weapons for 2027</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 6.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>“We’re making them put skin in the game … and we expect them to meet the ramp rates that they agree to. And, if they don’t, there’ll be penalties for them,” said Jules “Jay” Hurst, who is performing the duties of the Pentagon comptroller....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-17" class="item-wrap"><article class="item" data-score="6.1" data-cat="generative_media" data-multi="0" data-srccount="1" data-search="comfyui hits $500m valuation as creators seek more control over ai-generated media generative_media generative media techcrunch ai comfyui — the open-source node-graph runner that&#x27;s become the de-facto interface for serious diffusion users — closed financing at a $500m valuation. the fundraise is a marker for how much of the generative-media stack now runs through tooling layers above the foundation models, and how creators are willing to trade out-of-the-box image quality for the explicit control a node graph affords. valuation is rich for an open-core company; the bull case is workflow lock-in across pro studios. comfyui funding node-graph creator-tools">
+<div class="item-head">
+  <div class="rank">#17</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://techcrunch.com/2026/04/24/comfyui-hits-500m-valuation-as-creators-seek-more-control-over-ai-generated-media/" target="_blank" rel="noopener">ComfyUI hits $500M valuation as creators seek more control over AI-generated media</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="generative_media" style="--pill-color:#d79cff">Generative Media</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">TechCrunch AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 6.0</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>ComfyUI — the open-source node-graph runner that&#x27;s become the de-facto interface for serious diffusion users — closed financing at a $500M valuation. The fundraise is a marker for how much of the generative-media stack now runs through tooling layers above the foundation models, and how creators are willing to trade out-of-the-box image quality for the explicit control a node graph affords. Valuation is rich for an open-core company; the bull case is workflow lock-in across pro studios.</p></div>
+
+<div class="tags"><span class="tag">comfyui</span><span class="tag">funding</span><span class="tag">node-graph</span><span class="tag">creator-tools</span></div>
+</article></div>
+<div id="item-18" class="item-wrap"><article class="item" data-score="6.1" data-cat="evals" data-multi="1" data-srccount="2" data-search="llatisa: towards difficulty-stratified time series reasoning from visual perception to semantics evals evaluations &amp; benchmarks arxiv hf daily papers comprehensive understanding of time series remains a significant challenge for large language models (llms). current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified time series reasoning models(tsrms). to bridge this gap, we formalize time series reasoning (tsr) via a four-level taxonomy of increasing cognitive complexity. time-series reasoning benchmark">
+<div class="item-head">
+  <div class="rank">#18</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.17295" target="_blank" rel="noopener">LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="evals" style="--pill-color:#ffd479">Evaluations &amp; Benchmarks</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Comprehensive understanding of time series remains a significant challenge for Large Language Models (LLMs). Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models(TSRMs). To bridge this gap, we formalize Time Series Reasoning (TSR) via a four-level taxonomy of increasing cognitive complexity.</p></div>
+
+<div class="tags"><span class="tag">time-series</span><span class="tag">reasoning</span><span class="tag">benchmark</span></div>
+</article></div>
+<div id="item-19" class="item-wrap"><article class="item" data-score="6.1" data-cat="agents" data-multi="1" data-srccount="2" data-search="co-evolving llm decision and skill bank agents for long-horizon tasks agents agents &amp; tool use arxiv hf daily papers long horizon interactive environments are a testbed for evaluating agents skill usage abilities. these environments demand multi step reasoning, the chaining of multiple skills over many timesteps, and robust decision making under delayed rewards and partial observability. games are a good testbed for evaluating agent skill usage in environments. llm-agent skill-bank long-horizon">
+<div class="item-head">
+  <div class="rank">#19</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.20987" target="_blank" rel="noopener">Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="agents" style="--pill-color:#5ee0b7">Agents &amp; Tool Use</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. These environments demand multi step reasoning, the chaining of multiple skills over many timesteps, and robust decision making under delayed rewards and partial observability. Games are a good testbed for evaluating agent skill usage in environments.</p></div>
+
+<div class="tags"><span class="tag">llm-agent</span><span class="tag">skill-bank</span><span class="tag">long-horizon</span></div>
+</article></div>
+<div id="item-20" class="item-wrap"><article class="item" data-score="6.1" data-cat="research" data-multi="1" data-srccount="2" data-search="seeing fast and slow: learning the flow of time in videos research research arxiv hf daily papers how can we tell whether a video has been sped up or slowed down? how can we generate videos at different speeds? although videos have been central to modern computer vision research, little attention has been paid to perceiving and controlling the passage of time. video temporal generative">
+<div class="item-head">
+  <div class="rank">#20</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21931" target="_blank" rel="noopener">Seeing Fast and Slow: Learning the Flow of Time in Videos</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="research" style="--pill-color:#9aa0a6">Research</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>How can we tell whether a video has been sped up or slowed down? How can we generate videos at different speeds? Although videos have been central to modern computer vision research, little attention has been paid to perceiving and controlling the passage of time.</p></div>
+
+<div class="tags"><span class="tag">video</span><span class="tag">temporal</span><span class="tag">generative</span></div>
+</article></div>
+<div id="item-21" class="item-wrap"><article class="item" data-score="6.1" data-cat="agents" data-multi="1" data-srccount="2" data-search="vlaa-gui: knowing when to stop, recover, and search, a modular framework for gui automation agents agents &amp; tool use arxiv hf daily papers autonomous gui agents face two fundamental challenges: early stopping, where agents prematurely declare success without verifiable evidence, and repetitive loops, where agents cycle through the same failing actions without recovery. we present vlaa-gui, a modular gui agentic framework built around three integrated components that guide the system on when to stop, recover, and search. first, a mandatory completeness verifier enforces ui-observable success criteria and verification at every finish step -- with an agent-level verifier that cross-examines completion claims with decision rules, rej... gui-agent modular stop-recover-search">
+<div class="item-head">
+  <div class="rank">#21</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21375" target="_blank" rel="noopener">VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="agents" style="--pill-color:#5ee0b7">Agents &amp; Tool Use</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Autonomous GUI agents face two fundamental challenges: early stopping, where agents prematurely declare success without verifiable evidence, and repetitive loops, where agents cycle through the same failing actions without recovery. We present VLAA-GUI, a modular GUI agentic framework built around three integrated components that guide the system on when to Stop, Recover, and Search. First, a mandatory Completeness Verifier enforces UI-observable success criteria and verification at every finish step -- with an agent-level verifier that cross-examines completion claims with decision rules, rej...</p></div>
+
+<div class="tags"><span class="tag">gui-agent</span><span class="tag">modular</span><span class="tag">stop-recover-search</span></div>
+</article></div>
+<div id="item-22" class="item-wrap"><article class="item" data-score="6.1" data-cat="post_training" data-multi="1" data-srccount="2" data-search="hybrid policy distillation for llms post_training post-training arxiv hf daily papers knowledge distillation (kd) is a powerful paradigm for compressing large language models (llms), whose effectiveness depends on intertwined choices of divergence direction, optimization strategy, and data regime. we break down the design of existing kd methods and present a unified view that establishes connections between them, reformulating kd as a reweighted log-likelihood objective at the token level. we further propose hybrid policy distillation (hpd), which integrates the complementary advantages of forward and reverse kl to balance mode coverage and mode-seeking, and combines off-policy... distillation kd llm">
+<div class="item-head">
+  <div class="rank">#22</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.20244" target="_blank" rel="noopener">Hybrid Policy Distillation for LLMs</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="post_training" style="--pill-color:#c0ff7a">Post-Training</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Knowledge distillation (KD) is a powerful paradigm for compressing large language models (LLMs), whose effectiveness depends on intertwined choices of divergence direction, optimization strategy, and data regime. We break down the design of existing KD methods and present a unified view that establishes connections between them, reformulating KD as a reweighted log-likelihood objective at the token level. We further propose Hybrid Policy Distillation (HPD), which integrates the complementary advantages of forward and reverse KL to balance mode coverage and mode-seeking, and combines off-policy...</p></div>
+
+<div class="tags"><span class="tag">distillation</span><span class="tag">kd</span><span class="tag">llm</span></div>
+</article></div>
+<div id="item-23" class="item-wrap"><article class="item" data-score="6.1" data-cat="multimodal" data-multi="1" data-srccount="2" data-search="context unrolling in omni models multimodal multimodal arxiv hf daily papers we present omni, a unified multimodal model natively trained on diverse modalities, including text, images, videos, 3d geometry, and hidden representations. we find that such training enables context unrolling, where the model explicitly reasons across multiple modal representations before producing predictions. this process enables the model to aggregate complementary information across heterogeneous modalities, facilitating a more faithful approximation of the shared multimodal knowledge manifold and improving downstream reasoning fidelity. omni unified modalities">
+<div class="item-head">
+  <div class="rank">#23</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21921" target="_blank" rel="noopener">Context Unrolling in Omni Models</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="multimodal" style="--pill-color:#8cc9ff">Multimodal</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>We present Omni, a unified multimodal model natively trained on diverse modalities, including text, images, videos, 3D geometry, and hidden representations. We find that such training enables Context Unrolling, where the model explicitly reasons across multiple modal representations before producing predictions. This process enables the model to aggregate complementary information across heterogeneous modalities, facilitating a more faithful approximation of the shared multimodal knowledge manifold and improving downstream reasoning fidelity.</p></div>
+
+<div class="tags"><span class="tag">omni</span><span class="tag">unified</span><span class="tag">modalities</span></div>
+</article></div>
+<div id="item-24" class="item-wrap"><article class="item" data-score="6.1" data-cat="generative_media" data-multi="1" data-srccount="2" data-search="editcrafter: tuning-free high-resolution image editing via pretrained diffusion model generative_media generative media arxiv hf daily papers we propose editcrafter, a high-resolution image editing method that operates without tuning, leveraging pretrained text-to-image (t2i) diffusion models to process images at resolutions significantly exceeding those used during training. leveraging the generative priors of large-scale t2i diffusion models enables the development of a wide array of novel generation and editing applications. although numerous image editing methods have been proposed based on diffusion models and exhibit high-quality editing results, they are difficult to apply to images with arbitrary aspect ratios or higher reso... diffusion image-edit tuning-free">
+<div class="item-head">
+  <div class="rank">#24</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.10268" target="_blank" rel="noopener">EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="generative_media" style="--pill-color:#d79cff">Generative Media</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>We propose EditCrafter, a high-resolution image editing method that operates without tuning, leveraging pretrained text-to-image (T2I) diffusion models to process images at resolutions significantly exceeding those used during training. Leveraging the generative priors of large-scale T2I diffusion models enables the development of a wide array of novel generation and editing applications. Although numerous image editing methods have been proposed based on diffusion models and exhibit high-quality editing results, they are difficult to apply to images with arbitrary aspect ratios or higher reso...</p></div>
+
+<div class="tags"><span class="tag">diffusion</span><span class="tag">image-edit</span><span class="tag">tuning-free</span></div>
+</article></div>
+<div id="item-25" class="item-wrap"><article class="item" data-score="6.1" data-cat="generative_media" data-multi="1" data-srccount="2" data-search="vista4d: video reshooting with 4d point clouds generative_media generative media arxiv hf daily papers we present vista4d, a robust and flexible video reshooting framework that grounds the input video and target cameras in a 4d point cloud. specifically, given an input video, our method re-synthesizes the scene with the same dynamics from a different camera trajectory and viewpoint. existing video reshooting methods often struggle with depth estimation artifacts of real-world dynamic videos, while also failing to preserve content appearance and failing to maintain precise camera control for challenging new trajectories. video 4d reshooting">
+<div class="item-head">
+  <div class="rank">#25</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21915" target="_blank" rel="noopener">Vista4D: Video Reshooting with 4D Point Clouds</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="generative_media" style="--pill-color:#d79cff">Generative Media</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>We present Vista4D, a robust and flexible video reshooting framework that grounds the input video and target cameras in a 4D point cloud. Specifically, given an input video, our method re-synthesizes the scene with the same dynamics from a different camera trajectory and viewpoint. Existing video reshooting methods often struggle with depth estimation artifacts of real-world dynamic videos, while also failing to preserve content appearance and failing to maintain precise camera control for challenging new trajectories.</p></div>
+
+<div class="tags"><span class="tag">video</span><span class="tag">4d</span><span class="tag">reshooting</span></div>
+</article></div>
+<div id="item-26" class="item-wrap"><article class="item" data-score="6.1" data-cat="generative_media" data-multi="1" data-srccount="2" data-search="unigendet: a unified generative-discriminative framework for co-evolutionary image generation and generated image detection generative_media generative media arxiv hf daily papers in recent years, significant progress has been made in both image generation and generated image detection. despite their rapid, yet largely independent, development, these two fields have evolved distinct architectural paradigms: the former predominantly relies on generative networks, while the latter favors discriminative frameworks. a recent trend in both domains is the use of adversarial information to enhance performance, revealing potential for synergy. unified gen-disc co-evolution">
+<div class="item-head">
+  <div class="rank">#26</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21904" target="_blank" rel="noopener">UniGenDet: A Unified Generative-Discriminative Framework for Co-Evolutionary Image Generation and Generated Image Detection</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="generative_media" style="--pill-color:#d79cff">Generative Media</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>In recent years, significant progress has been made in both image generation and generated image detection. Despite their rapid, yet largely independent, development, these two fields have evolved distinct architectural paradigms: the former predominantly relies on generative networks, while the latter favors discriminative frameworks. A recent trend in both domains is the use of adversarial information to enhance performance, revealing potential for synergy.</p></div>
+
+<div class="tags"><span class="tag">unified</span><span class="tag">gen-disc</span><span class="tag">co-evolution</span></div>
+</article></div>
+<div id="item-27" class="item-wrap"><article class="item" data-score="6.1" data-cat="efficiency" data-multi="1" data-srccount="2" data-search="temporally extended mixture-of-experts models efficiency efficiency arxiv hf daily papers mixture-of-experts models, now popular for scaling capacity at fixed inference speed, switch experts at nearly every token. once a model outgrows available gpu memory, this churn can render optimizations like offloading and pre-fetching ineffective. we make the case that the options framework in reinforcement learning is a perfect match to tackle this problem, and argue for temporally extended mixture-of-experts layers. moe temporal experts">
+<div class="item-head">
+  <div class="rank">#27</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.20156" target="_blank" rel="noopener">Temporally Extended Mixture-of-Experts Models</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="efficiency" style="--pill-color:#f5e16e">Efficiency</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Mixture-of-Experts models, now popular for scaling capacity at fixed inference speed, switch experts at nearly every token. Once a model outgrows available GPU memory, this churn can render optimizations like offloading and pre-fetching ineffective. We make the case that the options framework in reinforcement learning is a perfect match to tackle this problem, and argue for temporally extended mixture-of-experts layers.</p></div>
+
+<div class="tags"><span class="tag">moe</span><span class="tag">temporal</span><span class="tag">experts</span></div>
+</article></div>
+<div id="item-28" class="item-wrap"><article class="item" data-score="6.1" data-cat="safety_policy" data-multi="1" data-srccount="2" data-search="trust but verify: introducing davinci -- a framework for dual attribution and verification in claim inference for language models safety_policy safety, policy &amp; regulation arxiv hf daily papers large language models (llms) have demonstrated remarkable fluency and versatility across a wide range of nlp tasks, yet they remain prone to factual inaccuracies and hallucinations. this limitation poses significant risks in high-stakes domains such as healthcare, law, and scientific communication, where trust and verifiability are paramount. in this paper, we introduce davinci - a dual attribution and verification framework designed to enhance the factual reliability and interpretability of llm outputs. attribution verification factuality">
+<div class="item-head">
+  <div class="rank">#28</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21193" target="_blank" rel="noopener">Trust but Verify: Introducing DAVinCI -- A Framework for Dual Attribution and Verification in Claim Inference for Language Models</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Large Language Models (LLMs) have demonstrated remarkable fluency and versatility across a wide range of NLP tasks, yet they remain prone to factual inaccuracies and hallucinations. This limitation poses significant risks in high-stakes domains such as healthcare, law, and scientific communication, where trust and verifiability are paramount. In this paper, we introduce DAVinCI - a Dual Attribution and Verification framework designed to enhance the factual reliability and interpretability of LLM outputs.</p></div>
+
+<div class="tags"><span class="tag">attribution</span><span class="tag">verification</span><span class="tag">factuality</span></div>
+</article></div>
+<div id="item-29" class="item-wrap"><article class="item" data-score="6.1" data-cat="safety_policy" data-multi="1" data-srccount="2" data-search="explainable disentangled representation learning for generalizable authorship attribution in the era of generative ai safety_policy safety, policy &amp; regulation arxiv hf daily papers learning robust representations of authorial style is crucial for authorship attribution and ai-generated text detection. however, existing methods often struggle with content-style entanglement, where models learn spurious correlations between authors&#x27; writing styles and topics, leading to poor generalization across domains. to address this challenge, we propose explainable authorship variational autoencoder (eavae), a novel framework that explicitly disentangles style from content through architectural separation-by-design. authorship detection style">
+<div class="item-head">
+  <div class="rank">#29</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21300" target="_blank" rel="noopener">Explainable Disentangled Representation Learning for Generalizable Authorship Attribution in the Era of Generative AI</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Learning robust representations of authorial style is crucial for authorship attribution and AI-generated text detection. However, existing methods often struggle with content-style entanglement, where models learn spurious correlations between authors&#x27; writing styles and topics, leading to poor generalization across domains. To address this challenge, we propose Explainable Authorship Variational Autoencoder (EAVAE), a novel framework that explicitly disentangles style from content through architectural separation-by-design.</p></div>
+
+<div class="tags"><span class="tag">authorship</span><span class="tag">detection</span><span class="tag">style</span></div>
+</article></div>
+<div id="item-30" class="item-wrap"><article class="item" data-score="6.1" data-cat="research" data-multi="1" data-srccount="2" data-search="coevolving representations in joint image-feature diffusion research research arxiv hf daily papers joint image-feature generative modeling has recently emerged as an effective strategy for improving diffusion training by coupling low-level vae latents with high-level semantic features extracted from pre-trained visual encoders. however, existing approaches rely on a fixed representation space, constructed independently of the generative objective and kept unchanged during training. we argue that the representation space guiding diffusion should itself adapt to the generative task. diffusion representation joint-features">
+<div class="item-head">
+  <div class="rank">#30</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.17492" target="_blank" rel="noopener">Coevolving Representations in Joint Image-Feature Diffusion</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="research" style="--pill-color:#9aa0a6">Research</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Joint image-feature generative modeling has recently emerged as an effective strategy for improving diffusion training by coupling low-level VAE latents with high-level semantic features extracted from pre-trained visual encoders. However, existing approaches rely on a fixed representation space, constructed independently of the generative objective and kept unchanged during training. We argue that the representation space guiding diffusion should itself adapt to the generative task.</p></div>
+
+<div class="tags"><span class="tag">diffusion</span><span class="tag">representation</span><span class="tag">joint-features</span></div>
+</article></div>
+<div id="item-31" class="item-wrap"><article class="item" data-score="6.1" data-cat="multimodal" data-multi="1" data-srccount="2" data-search="encoder-free human motion understanding via structured motion descriptions multimodal multimodal arxiv hf daily papers the world knowledge and reasoning capabilities of text-based large language models (llms) are advancing rapidly, yet current approaches to human motion understanding, including motion question answering and captioning, have not fully exploited these capabilities. existing llm-based methods typically learn motion-language alignment through dedicated encoders that project motion features into the llm&#x27;s embedding space, remaining constrained by cross-modal representation and alignment. inspired by biomechanical analysis, where joint angles and body-part kinematics have long served as a precise de... motion encoder-free llm">
+<div class="item-head">
+  <div class="rank">#31</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.21668" target="_blank" rel="noopener">Encoder-Free Human Motion Understanding via Structured Motion Descriptions</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="multimodal" style="--pill-color:#8cc9ff">Multimodal</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The world knowledge and reasoning capabilities of text-based large language models (LLMs) are advancing rapidly, yet current approaches to human motion understanding, including motion question answering and captioning, have not fully exploited these capabilities. Existing LLM-based methods typically learn motion-language alignment through dedicated encoders that project motion features into the LLM&#x27;s embedding space, remaining constrained by cross-modal representation and alignment. Inspired by biomechanical analysis, where joint angles and body-part kinematics have long served as a precise de...</p></div>
+
+<div class="tags"><span class="tag">motion</span><span class="tag">encoder-free</span><span class="tag">llm</span></div>
+</article></div>
+<div id="item-32" class="item-wrap"><article class="item" data-score="6.1" data-cat="agents" data-multi="1" data-srccount="2" data-search="personalai: a systematic comparison of knowledge graph storage and retrieval approaches for personalized llm agents agents agents &amp; tool use arxiv hf daily papers personalizing language models by effectively incorporating user interaction history remains a central challenge in the development of adaptive ai systems. while large language models (llms), combined with retrieval-augmented generation (rag), have improved factual accuracy, they often lack structured memory and fail to scale in complex, long-term interactions. to address this, we propose a flexible external memory framework based on a knowledge graph that is constructed and updated automatically by the llm. personalization kg memory">
+<div class="item-head">
+  <div class="rank">#32</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2506.17001" target="_blank" rel="noopener">PersonalAI: A Systematic Comparison of Knowledge Graph Storage and Retrieval Approaches for Personalized LLM agents</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="agents" style="--pill-color:#5ee0b7">Agents &amp; Tool Use</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Personalizing language models by effectively incorporating user interaction history remains a central challenge in the development of adaptive AI systems. While large language models (LLMs), combined with Retrieval-Augmented Generation (RAG), have improved factual accuracy, they often lack structured memory and fail to scale in complex, long-term interactions. To address this, we propose a flexible external memory framework based on a knowledge graph that is constructed and updated automatically by the LLM.</p></div>
+
+<div class="tags"><span class="tag">personalization</span><span class="tag">kg</span><span class="tag">memory</span></div>
+</article></div>
+<div id="item-33" class="item-wrap"><article class="item" data-score="6.1" data-cat="multimodal" data-multi="1" data-srccount="2" data-search="3d-vcd: hallucination mitigation in 3d-llm embodied agents through visual contrastive decoding multimodal multimodal arxiv hf daily papers large multimodal models are increasingly used as the reasoning core of embodied agents operating in 3d environments, yet they remain prone to hallucinations that can produce unsafe and ungrounded decisions. existing inference-time hallucination mitigation methods largely target 2d vision-language settings and do not transfer to embodied 3d reasoning, where failures arise from object presence, spatial layout, and geometric grounding rather than pixel-level inconsistencies. we introduce 3d-vcd, the first inference-time visual contrastive decoding framework for hallucination mitigation in 3d embo... 3d embodied hallucination">
+<div class="item-head">
+  <div class="rank">#33</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://arxiv.org/abs/2604.08645" target="_blank" rel="noopener">3D-VCD: Hallucination Mitigation in 3D-LLM Embodied Agents through Visual Contrastive Decoding</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="multimodal" style="--pill-color:#8cc9ff">Multimodal</span>
+      <span class="date">2026-04-23</span>
+      <span class="srcs"><span class="src-chip">arXiv</span><span class="src-chip">HF Daily Papers</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.1</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Large multimodal models are increasingly used as the reasoning core of embodied agents operating in 3D environments, yet they remain prone to hallucinations that can produce unsafe and ungrounded decisions. Existing inference-time hallucination mitigation methods largely target 2D vision-language settings and do not transfer to embodied 3D reasoning, where failures arise from object presence, spatial layout, and geometric grounding rather than pixel-level inconsistencies. We introduce 3D-VCD, the first inference-time visual contrastive decoding framework for hallucination mitigation in 3D embo...</p></div>
+
+<div class="tags"><span class="tag">3d</span><span class="tag">embodied</span><span class="tag">hallucination</span></div>
+</article></div>
+<div id="item-34" class="item-wrap"><article class="item" data-score="6.0" data-cat="infra" data-multi="0" data-srccount="1" data-search="marked-up mac minis flood ebay amid shortages driven by ai infra infrastructure techcrunch ai local-llm demand is rippling into apple-silicon supply: m5 mac minis are out of stock at most retailers and reselling for 1.3–1.8× msrp on ebay. the unified-memory bandwidth on the high-end m5 skus makes them surprisingly competitive for running models like deepseek v4-flash, and the secondary-market pricing reflects the demand mismatch that&#x27;s been building since open-weights moes started landing in 100b–300b-active-parameter territory. apple-silicon local-inference supply">
+<div class="item-head">
+  <div class="rank">#34</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://techcrunch.com/2026/04/24/mac-mini-price-expensive-ebay-shortage-ai-memory/" target="_blank" rel="noopener">Marked-up Mac minis flood eBay amid shortages driven by AI</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="infra" style="--pill-color:#d9d9d9">Infrastructure</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">TechCrunch AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.0</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.0</span>
+      <span>Im 5.0</span>
+      <span>P 7.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Local-LLM demand is rippling into Apple-silicon supply: M5 Mac minis are out of stock at most retailers and reselling for 1.3–1.8× MSRP on eBay. The unified-memory bandwidth on the high-end M5 SKUs makes them surprisingly competitive for running models like DeepSeek V4-Flash, and the secondary-market pricing reflects the demand mismatch that&#x27;s been building since open-weights MoEs started landing in 100B–300B-active-parameter territory.</p></div>
+
+<div class="tags"><span class="tag">apple-silicon</span><span class="tag">local-inference</span><span class="tag">supply</span></div>
+</article></div>
+<div id="item-35" class="item-wrap"><article class="item" data-score="6.0" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="pentagon planning fleet of missile-killing laser drones gov_defense government &amp; defense c4isrnet c4isrnet reports on pentagon plans for an attritable laser-drone fleet for missile defense — high-energy lasers mounted on autonomous airborne platforms positioned to engage cruise missiles and drones within the layered missile-defense architecture. the story aligns with the parallel golden dome announcements and with australia&#x27;s counter-drone laser/interceptor contracts also reported today. lasers drones missile-defense autonomy">
+<div class="item-head">
+  <div class="rank">#35</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.c4isrnet.com/industry/techwatch/2026/04/24/the-us-military-wants-a-fleet-of-missile-killing-laser-drones/" target="_blank" rel="noopener">Pentagon planning fleet of missile-killing laser drones</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">C4ISRNET</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">6.0</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 6.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>C4ISRNET reports on Pentagon plans for an attritable laser-drone fleet for missile defense — high-energy lasers mounted on autonomous airborne platforms positioned to engage cruise missiles and drones within the layered missile-defense architecture. The story aligns with the parallel Golden Dome announcements and with Australia&#x27;s counter-drone laser/interceptor contracts also reported today.</p></div>
+
+<div class="tags"><span class="tag">lasers</span><span class="tag">drones</span><span class="tag">missile-defense</span><span class="tag">autonomy</span></div>
+</article></div>
+<div id="item-36" class="item-wrap"><article class="item" data-score="5.7" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="australia awards counter-drone contracts: lasers, interceptors gov_defense government &amp; defense c4isrnet australia&#x27;s department of defence awarded multiple contracts under its counter-drone programme for laser-based and kinetic interceptor systems. the buy follows the broader aukus priority on rapidly fielding asymmetric counter-uas capability and parallels the pentagon laser-drone story. australia counter-drone lasers interceptors aukus">
+<div class="item-head">
+  <div class="rank">#36</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.c4isrnet.com/global/asia-pacific/2026/04/24/australia-awards-contracts-for-counter-drone-tech-based-on-lasers-interceptors/" target="_blank" rel="noopener">Australia awards counter-drone contracts: lasers, interceptors</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">C4ISRNET</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.7</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 5.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Australia&#x27;s Department of Defence awarded multiple contracts under its counter-drone programme for laser-based and kinetic interceptor systems. The buy follows the broader AUKUS priority on rapidly fielding asymmetric counter-UAS capability and parallels the Pentagon laser-drone story.</p></div>
+
+<div class="tags"><span class="tag">australia</span><span class="tag">counter-drone</span><span class="tag">lasers</span><span class="tag">interceptors</span><span class="tag">aukus</span></div>
+</article></div>
+<div id="item-37" class="item-wrap"><article class="item" data-score="5.7" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="three carriers operate in middle east for first time since 2003: centcom gov_defense government &amp; defense breaking defense aircraft carriers george hw bush, abraham lincoln and gerald r ford are now operating in the middle east amid operation epic fury.... defense">
+<div class="item-head">
+  <div class="rank">#37</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/three-carriers-operate-in-middle-east-for-first-time-since-2003-centcom/" target="_blank" rel="noopener">Three carriers operate in Middle East for first time since 2003: CENTCOM</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.7</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 5.5</span>
+      <span>Im 5.5</span>
+      <span>P 5.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Aircraft carriers George HW Bush, Abraham Lincoln and Gerald R Ford are now operating in the Middle East amid Operation Epic Fury....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-38" class="item-wrap"><article class="item" data-score="5.7" data-cat="industry" data-multi="0" data-srccount="1" data-search="scaling laws: facts &amp; myths about ai&#x27;s energy usage with gavin mccormick - lawfare industry industry lawfare scaling laws: facts &amp; myths about ai&#x27;s energy usage with gavin mccormick    lawfare... policy law">
+<div class="item-head">
+  <div class="rank">#38</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQZ1NCU01HR0NXc1llOUJtcVJUQ256aEhnTWJTdzE3YnJJNUdTTHRTcjdSZHZHMnBSS2h2YVJaUU9qZFdEWk9TWHBoTmFqRVZwR2h1cGFrcUpubHZ4RHYybG9kRjRxX2F2THhGemZVYWVQT1p4aF9UbnREQ2x2SkZ4UzRNZGIzSjlzdlBOMnl0V0JOZG4xQ1VpSldhTTlJTDBmN25mdGdFN0t6Y1dNaEE?oc=5" target="_blank" rel="noopener">Scaling Laws: Facts &amp; Myths About AI&#x27;s Energy Usage with Gavin McCormick - Lawfare</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Lawfare</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.7</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 6.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Scaling Laws: Facts &amp; Myths About AI&#x27;s Energy Usage with Gavin McCormick    Lawfare...</p></div>
+
+<div class="tags"><span class="tag">policy</span><span class="tag">law</span></div>
+</article></div>
+<div id="item-39" class="item-wrap"><article class="item" data-score="5.6" data-cat="industry" data-multi="0" data-srccount="1" data-search="simon willison cites nilay patel: &#x27;the people do not yearn for automation&#x27; industry industry simon willison willison links a verge written-and-video essay by nilay patel arguing that consumer hostility to ai automation is durable — chatgpt usage keeps growing while the underlying narrative around ai in mass culture remains unfavourable. willison&#x27;s own commentary highlights the gap between observed product-level adoption metrics and the political/cultural sentiment that&#x27;s now hardening, a tension worth tracking as policy moves. public-opinion automation verge">
+<div class="item-head">
+  <div class="rank">#39</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://simonwillison.net/2026/Apr/24/the-people-do-not-yearn-for-automation/#atom-everything" target="_blank" rel="noopener">Simon Willison cites Nilay Patel: &#x27;The people do not yearn for automation&#x27;</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="industry" style="--pill-color:#ffa64d">Industry</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Simon Willison</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.6</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 5.0</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Willison links a Verge written-and-video essay by Nilay Patel arguing that consumer hostility to AI automation is durable — ChatGPT usage keeps growing while the underlying narrative around AI in mass culture remains unfavourable. Willison&#x27;s own commentary highlights the gap between observed product-level adoption metrics and the political/cultural sentiment that&#x27;s now hardening, a tension worth tracking as policy moves.</p></div>
+
+<div class="tags"><span class="tag">public-opinion</span><span class="tag">automation</span><span class="tag">verge</span></div>
+</article></div>
+<div id="item-40" class="item-wrap"><article class="item" data-score="5.5" data-cat="research" data-multi="0" data-srccount="1" data-search="dwarkesh announces blog prize for the big questions about ai research research dwarkesh podcast dwarkesh patel announced a blog-essay prize aimed at the open structural questions about ai&#x27;s near-term trajectory — alignment, agentic deployment, compute economics, and policy. submissions are evaluated on argument quality and originality rather than position. prize structure and judges are listed on the post; deadline tbd. dwarkesh writing-prize forecasting">
+<div class="item-head">
+  <div class="rank">#40</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.dwarkesh.com/p/blog-prize" target="_blank" rel="noopener">Dwarkesh announces blog prize for the big questions about AI</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="research" style="--pill-color:#9aa0a6">Research</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Dwarkesh Podcast</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.5</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.0</span>
+      <span>Im 5.0</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Dwarkesh Patel announced a blog-essay prize aimed at the open structural questions about AI&#x27;s near-term trajectory — alignment, agentic deployment, compute economics, and policy. Submissions are evaluated on argument quality and originality rather than position. Prize structure and judges are listed on the post; deadline TBD.</p></div>
+
+<div class="tags"><span class="tag">dwarkesh</span><span class="tag">writing-prize</span><span class="tag">forecasting</span></div>
+</article></div>
+<div id="item-41" class="item-wrap"><article class="item" data-score="5.3" data-cat="agents" data-multi="0" data-srccount="1" data-search="show hn: browser harness — gives an llm freedom to complete any browser task agents agents &amp; tool use hn ai show-hn of an open-source browser harness that exposes a small action api (click, type, scroll, screenshot, extract) to any llm and lets the model run open-ended browser tasks. comments split between curiosity at the prompt-engineering layer and concerns about safety/reliability when the model is given uncontrolled dom access. useful as a comparison point against anthropic&#x27;s computer-use, openai&#x27;s operator, and the in-house browser-agent stacks at cursor and cognition. browser-agent tool-use show-hn">
+<div class="item-head">
+  <div class="rank">#41</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://github.com/browser-use/browser-harness" target="_blank" rel="noopener">Show HN: Browser Harness — gives an LLM freedom to complete any browser task</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="agents" style="--pill-color:#5ee0b7">Agents &amp; Tool Use</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">HN AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.3</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 6.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Show-HN of an open-source browser harness that exposes a small action API (click, type, scroll, screenshot, extract) to any LLM and lets the model run open-ended browser tasks. Comments split between curiosity at the prompt-engineering layer and concerns about safety/reliability when the model is given uncontrolled DOM access. Useful as a comparison point against Anthropic&#x27;s computer-use, OpenAI&#x27;s Operator, and the in-house browser-agent stacks at Cursor and Cognition.</p></div>
+
+<div class="tags"><span class="tag">browser-agent</span><span class="tag">tool-use</span><span class="tag">show-hn</span></div>
+</article></div>
+<div id="item-42" class="item-wrap"><article class="item" data-score="5.2" data-cat="safety_policy" data-multi="0" data-srccount="1" data-search="musk snubs french authorities - lawfare safety_policy safety, policy &amp; regulation lawfare musk snubs french authorities    lawfare... policy law">
+<div class="item-head">
+  <div class="rank">#42</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE4tdU52cXRPRFZyT2hfNndJR2VVOUt2Um9felNPYzVNTG9lN2NpTW5lSVFFaDByRmJ0VlFpTjRQR21WaWxlRG1oUlk5OVo3SFNWaXhuV0NobFZRUF9rdzJ3Zmdqd1A5dXpWMHFLdnZQa3hMRlBn?oc=5" target="_blank" rel="noopener">Musk Snubs French Authorities - Lawfare</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Lawfare</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Musk Snubs French Authorities    Lawfare...</p></div>
+
+<div class="tags"><span class="tag">policy</span><span class="tag">law</span></div>
+</article></div>
+<div id="item-43" class="item-wrap"><article class="item" data-score="5.2" data-cat="safety_policy" data-multi="0" data-srccount="1" data-search="south korea police arrest man for posting ai photo of runaway wolf safety_policy safety, policy &amp; regulation hn ai korean police arrested an individual who posted an ai-generated photograph of a runaway wolf during the active animal-control alert. the case is a small but pointed enforcement example of how synthetic-image misuse is now drawing criminal liability in jurisdictions with relatively muscular content statutes — fits the broader pattern of deepfake enforcement creep in late-2025 / early-2026. deepfake misinformation south-korea">
+<div class="item-head">
+  <div class="rank">#43</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://www.bbc.com/news/articles/c4gx1n0dl9no" target="_blank" rel="noopener">South Korea police arrest man for posting AI photo of runaway wolf</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">HN AI</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.0</span>
+      <span>Im 5.0</span>
+      <span>P 5.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Korean police arrested an individual who posted an AI-generated photograph of a runaway wolf during the active animal-control alert. The case is a small but pointed enforcement example of how synthetic-image misuse is now drawing criminal liability in jurisdictions with relatively muscular content statutes — fits the broader pattern of deepfake enforcement creep in late-2025 / early-2026.</p></div>
+
+<div class="tags"><span class="tag">deepfake</span><span class="tag">misinformation</span><span class="tag">south-korea</span></div>
+</article></div>
+<div id="item-44" class="item-wrap"><article class="item" data-score="5.0" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="airwaves of power: why the pentagon should shift to a commercial-first spectrum model gov_defense government &amp; defense war on the rocks the u.s. military is firing million-dollar missiles at iranian drones that cost a tiny fraction as much — a striking example of the kind of overmatch modern warfare punishes.the department of defense’s approach to electromagnetic spectrum policy follows a similar logic, occupying prime mid-band frequencies for vital but relatively low-throughput national security uses — including radars, satellite communications, navigation, and electronic warfare — even as those same bands could generate much l... defense policy">
+<div class="item-head">
+  <div class="rank">#44</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://warontherocks.com/cogs-of-war/airwaves-of-power-why-the-pentagon-should-shift-to-a-commercial-first-spectrum-model/" target="_blank" rel="noopener">Airwaves of Power: Why the Pentagon Should Shift to a Commercial-First Spectrum Model</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">War on the Rocks</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.0</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 5.0</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The U.S. military is firing million-dollar missiles at Iranian drones that cost a tiny fraction as much — a striking example of the kind of overmatch modern warfare punishes.The Department of Defense’s approach to electromagnetic spectrum policy follows a similar logic, occupying prime mid-band frequencies for vital but relatively low-throughput national security uses — including radars, satellite communications, navigation, and electronic warfare — even as those same bands could generate much l...</p></div>
+
+<div class="tags"><span class="tag">defense</span><span class="tag">policy</span></div>
+</article></div>
+<div id="item-45" class="item-wrap"><article class="item" data-score="5.0" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="presence or capacity? the coast guard can have both through small boat stations gov_defense government &amp; defense war on the rocks closing small boat stations has proven difficult. leaving them unchanged is operationally inefficient. these units are enduring parts of the coast guard’s force structure, yet their full potential is not always realized. this article proposes a model to better align their mission with national priorities.during the recent senate confirmation hearing for the next commandant of the u.s. coast guard, senators raised a wide range of global maritime concerns, including arctic competition, cyber threa... defense policy">
+<div class="item-head">
+  <div class="rank">#45</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://warontherocks.com/presence-or-capacity-the-coast-guard-can-have-both-through-small-boat-stations/" target="_blank" rel="noopener">Presence or Capacity? The Coast Guard Can Have Both Through Small Boat Stations</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">War on the Rocks</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">5.0</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 5.0</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Closing small boat stations has proven difficult. Leaving them unchanged is operationally inefficient. These units are enduring parts of the Coast Guard’s force structure, yet their full potential is not always realized. This article proposes a model to better align their mission with national priorities.During the recent Senate confirmation hearing for the next commandant of the U.S. Coast Guard, senators raised a wide range of global maritime concerns, including Arctic competition, cyber threa...</p></div>
+
+<div class="tags"><span class="tag">defense</span><span class="tag">policy</span></div>
+</article></div>
+<div id="item-46" class="item-wrap"><article class="item" data-score="4.9" data-cat="ai_coding" data-multi="0" data-srccount="1" data-search="simon willison: llm 0.31 — adds gpt-5.5 model and prompt-template defaults ai_coding ai coding simon willison willison shipped llm 0.31, his cli tool for talking to language models. the release adds a `gpt-5.5` model identifier (matching the gpt-5.5 api rollout earlier this week), a new option for setting prompt-template defaults, and minor ux polish. tooling-layer release rather than a research item, but it&#x27;s the canonical &#x27;day 1 of gpt-5.5 in api&#x27; marker for users running language models from the command line. llm cli gpt-5.5 tooling">
+<div class="item-head">
+  <div class="rank">#46</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://simonwillison.net/2026/Apr/24/llm/#atom-everything" target="_blank" rel="noopener">Simon Willison: llm 0.31 — adds GPT-5.5 model and prompt-template defaults</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="ai_coding" style="--pill-color:#ffd479">AI Coding</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Simon Willison</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.0</span>
+      <span>P 5.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Willison shipped llm 0.31, his CLI tool for talking to language models. The release adds a `gpt-5.5` model identifier (matching the GPT-5.5 API rollout earlier this week), a new option for setting prompt-template defaults, and minor UX polish. Tooling-layer release rather than a research item, but it&#x27;s the canonical &#x27;Day 1 of GPT-5.5 in API&#x27; marker for users running language models from the command line.</p></div>
+
+<div class="tags"><span class="tag">llm</span><span class="tag">cli</span><span class="tag">gpt-5.5</span><span class="tag">tooling</span></div>
+</article></div>
+<div id="item-47" class="item-wrap"><article class="item" data-score="4.9" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="president trump should secure america’s nuclear future by taking weapons out of doe gov_defense government &amp; defense breaking defense america’s nuclear weapons arsenal is too central to national defense to be buried inside the department of energy, argues franklin c. miller and frank a. rose.... defense">
+<div class="item-head">
+  <div class="rank">#47</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/president-trump-should-secure-americas-nuclear-future-by-taking-weapons-out-of-doe/" target="_blank" rel="noopener">President Trump should secure America’s nuclear future by taking weapons out of DoE</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>America’s nuclear weapons arsenal is too central to national defense to be buried inside the Department of Energy, argues Franklin C. Miller and Frank A. Rose....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-48" class="item-wrap"><article class="item" data-score="4.9" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="lockheed limbo in lima? firm says peru is buying f-16s, but questions remain gov_defense government &amp; defense breaking defense peru’s interim president indicated the deal was on hold, as the us embassy in lima insists at least part of it has already been signed.... defense">
+<div class="item-head">
+  <div class="rank">#48</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/schrodingers-f-16s-lockheed-says-peru-is-buying-fighters-questions-remain-in-lima/" target="_blank" rel="noopener">Lockheed limbo in Lima? Firm says Peru is buying F-16s, but questions remain</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Peru’s interim president indicated the deal was on hold, as the US Embassy in Lima insists at least part of it has already been signed....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-49" class="item-wrap"><article class="item" data-score="4.9" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="‘clear divide’ in military readiness for countries on nato’s eastern flank: report gov_defense government &amp; defense breaking defense “we further found that sustainment in [many eastern flank countries] is the real and serious gap: maintenance capabilities, logistical limitations stemming from poor transportation infrastructure …,” one of the authors of the report told breaking defense.... defense">
+<div class="item-head">
+  <div class="rank">#49</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://breakingdefense.com/2026/04/clear-divide-in-military-readiness-for-countries-on-natos-eastern-flank-report/" target="_blank" rel="noopener">‘Clear divide’ in military readiness for countries on NATO’s eastern flank: Report</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Breaking Defense</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>“We further found that sustainment in [many Eastern Flank countries] is the real and serious gap: maintenance capabilities, logistical limitations stemming from poor transportation infrastructure …,” one of the authors of the report told Breaking Defense....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+<div id="item-50" class="item-wrap"><article class="item" data-score="4.9" data-cat="safety_policy" data-multi="0" data-srccount="1" data-search="oral argument preview: chatrie v. united states - lawfare safety_policy safety, policy &amp; regulation lawfare oral argument preview: chatrie v. united states    lawfare... policy law">
+<div class="item-head">
+  <div class="rank">#50</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxPRUFOM3YwVS1MVENUSUhicUFHRUhjNks1cjNYWWRYMGx6Q3FCUWVpQjRKWHZUSzlRTU83enBoQVhfcWVwSVIzSXJ6Y0ctUjBMeno4MHNHZU96RWlwODNENkxMenpNVFI5WWE5bEszX3M2M1dDcnRTZm1IWjRSczV2ZDFoazBSaEphV0xBaw?oc=5" target="_blank" rel="noopener">Oral Argument Preview: Chatrie v. United States - Lawfare</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="safety_policy" style="--pill-color:#ff7a7a">Safety, Policy &amp; Regulation</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">Lawfare</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.9</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.5</span>
+      <span>Im 4.5</span>
+      <span>P 4.5</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>Oral Argument Preview: Chatrie v. United States    Lawfare...</p></div>
+
+<div class="tags"><span class="tag">policy</span><span class="tag">law</span></div>
+</article></div>
+<div id="item-51" class="item-wrap"><article class="item" data-score="4.5" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="securing the ‘last mile’ of critical federal work gov_defense government &amp; defense fedscoop a former omb deputy administrator for it and e-government details the next frontier in federal cybersecurity. the post securing the ‘last mile’ of critical federal work appeared first on fedscoop .... federal government">
+<div class="item-head">
+  <div class="rank">#51</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://fedscoop.com/federal-cybersecurity-systems-integrators/" target="_blank" rel="noopener">Securing the ‘last mile’ of critical federal work</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">FedScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.5</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.0</span>
+      <span>Im 4.5</span>
+      <span>P 4.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>A former OMB deputy administrator for IT and E-government details the next frontier in federal cybersecurity. The post Securing the ‘last mile’ of critical federal work appeared first on FedScoop ....</p></div>
+
+<div class="tags"><span class="tag">federal</span><span class="tag">government</span></div>
+</article></div>
+<div id="item-52" class="item-wrap"><article class="item" data-score="4.5" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="federal union projects to lose ‘tens of thousands’ of members, court filing shows gov_defense government &amp; defense fedscoop the national treasury employees union said a trump order and opm rule on collective bargaining has caused irreparable harm. an appeals court judge previously said those harms were “speculative.” the post federal union projects to lose ‘tens of thousands’ of members, court filing shows appeared first on fedscoop .... federal government">
+<div class="item-head">
+  <div class="rank">#52</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://fedscoop.com/federal-government-union-collective-bargaining-appeals-court/" target="_blank" rel="noopener">Federal union projects to lose ‘tens of thousands’ of members, court filing shows</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">FedScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.5</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 4.0</span>
+      <span>Im 4.5</span>
+      <span>P 4.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The National Treasury Employees Union said a Trump order and OPM rule on collective bargaining has caused irreparable harm. An appeals court judge previously said those harms were “speculative.” The post Federal union projects to lose ‘tens of thousands’ of members, court filing shows appeared first on FedScoop ....</p></div>
+
+<div class="tags"><span class="tag">federal</span><span class="tag">government</span></div>
+</article></div>
+<div id="item-53" class="item-wrap"><article class="item" data-score="4.2" data-cat="gov_defense" data-multi="0" data-srccount="1" data-search="special forces soldier charged with using classified information to profit off online prediction market released on $250k bond gov_defense government &amp; defense defensescoop the doj accused 38-year-old master sgt. gannon ken van dyke of using classified information to place tens of thousands of dollars worth of bets on polymarket in the days before the mission. the post special forces soldier charged with using classified information to profit off online prediction market released on $250k bond appeared first on defensescoop .... defense">
+<div class="item-head">
+  <div class="rank">#53</div>
+  <div class="title-row">
+    <h3 class="title"><a href="https://defensescoop.com/2026/04/24/special-forces-soldier-polymarket-bets-maduro-raid-released-on-bond/" target="_blank" rel="noopener">Special Forces soldier charged with using classified information to profit off online prediction market released on $250K bond</a></h3>
+    <div class="meta-row">
+      <span class="pill" data-cat="gov_defense" style="--pill-color:#e0b46c">Government &amp; Defense</span>
+      <span class="date">2026-04-24</span>
+      <span class="srcs"><span class="src-chip">DefenseScoop</span></span>
+    </div>
+  </div>
+  <div class="score-block">
+    <div class="score-final">4.2</div>
+    <div class="score-breakdown" title="Impact · Importance · Popularity">
+      <span>I 3.5</span>
+      <span>Im 4.0</span>
+      <span>P 4.0</span>
+    </div>
+  </div>
+</div>
+<div class="summary"><p>The DOJ accused 38-year-old Master Sgt. Gannon Ken Van Dyke of using classified information to place tens of thousands of dollars worth of bets on Polymarket in the days before the mission. The post Special Forces soldier charged with using classified information to profit off online prediction market released on $250K bond appeared first on DefenseScoop ....</p></div>
+
+<div class="tags"><span class="tag">defense</span></div>
+</article></div>
+  </div>
+  <div class="no-results" id="no-results" style="display:none;">
+    No items match the current filters.
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-cell"><div class="l">Items</div><div class="v">53</div></div>
+    <div class="meta-cell"><div class="l">Multi-source</div><div class="v">20</div></div>
+    <div class="meta-cell"><div class="l">Long-form (≥7.5)</div><div class="v">3</div></div>
+    <div class="meta-cell"><div class="l">Sources OK / attempted</div><div class="v">62 / 73</div></div>
+    <div class="meta-cell"><div class="l">Top category</div><div class="v sm">Government &amp; Defense (15)</div></div>
+  </div>
+
+  <footer>
+    <h3>Sources attempted</h3>
+    <p>Total: <b>73</b> — <b>62</b> returned cleanly, <b>11</b> errored or returned empty.
+    All RSS-equipped sources from sources.yaml were polled within the 27-hour window. RSS feeds covered: arXiv categorical (cs.LG, cs.CL, cs.AI, cs.RO, cs.NE, cs.CV, stat.ML — all returned cleanly though weekend submissions are sparse). Lab/company RSS: OpenAI, Google DeepMind, Google AI, NVIDIA, Microsoft Research, Hugging Face Blog. Newsletters: Import AI, Interconnects, Ahead of AI, Latent Space, AI Snake Oil, One Useful Thing, Lil'Log, Simon Willison, Gradient Flow, Last Week in AI, MIT Tech Review, TechCrunch, Stratechery, AI Alignment Forum. Podcasts: Latent Space, Dwarkesh, Lex Fridman, MLST, TWIML, No Priors, Cognitive Revolution, Gradient Dissent, 80,000 Hours, AI + a16z, a16z AI Policy Brief, Generally Intelligent, Latent Space Podcast. YouTube: Yannic Kilcher, Two Minute Papers, MLST, 3Blue1Brown, Andrej Karpathy, AI Explained, bycloud, Sentdex, Computerphile, DeepMind. Community: Hacker News (AI). Defense/gov news: Breaking Defense, Defense One, DefenseScoop, C4ISRNET, FedScoop, War on the Rocks, Lawfare (via Google News). Direct WebFetch for feedless sources: Anthropic News (parsed), Cursor Blog, Cognition AI, Physical Intelligence, Anduril Articles, Transformer Circuits, Apollo Research, LMSYS, Stability AI News, Mistral AI News, Black Forest Labs, Runway Research, Boston Dynamics, Figure AI, Waymo, AI2 Blog, Palantir, Shield AI, DARPA News, DIU Latest, ElevenLabs, Suno, AK Hugging Face, Hugging Face Daily Papers (parsed 22 papers, 16 new vs. yesterday).
+    </p>
+
+    <h3>Source failures — 11</h3>
+    <ul>
+      <li><b>arXiv categorical feeds</b> — <span class="err-cat">Empty window</span> — most recent submissions on the API are 2026-04-23 (Thursday); arXiv's announce schedule means Friday submissions land Sunday evening, so the Sat morning window is genuinely empty. Not a fetch failure — flagging because raw item count from arXiv is unusually low this run.</li>
+<li><b>LangChain Blog</b> — <span class="err-cat">Malformed feed</span> — RSS endpoint serving HTML rather than XML; same as yesterday.</li>
+<li><b>DeepSeek news (api-docs.deepseek.com/news)</b> — <span class="err-cat">HTTP 404</span> — page now lives at a different path; coverage of V4 picked up via Latent Space + MIT Tech Review + AI Explained instead.</li>
+<li><b>Perplexity Blog</b> — <span class="err-cat">HTTP 403</span> — Cloudflare blocking automated user-agents; consider WebFetch via the official browser tool if items needed.</li>
+<li><b>Meta AI Blog</b> — <span class="err-cat">HTTP 400</span> — site rejecting bare GET; needs JS-rendered fetch.</li>
+<li><b>CDAO News</b> — <span class="err-cat">HTTP 403</span> — DoD CDAO page blocking automated fetchers.</li>
+<li><b>Helsing Newsroom</b> — <span class="err-cat">HTTP 429</span> — Too Many Requests on first hit; transient.</li>
+<li><b>arXiv topical keyword queries (10)</b> — <span class="err-cat">Skipped (per spec)</span> — built as `arxiv_virtual` from already-fetched categorical corpus per workflow Step 2; no HTTP request emitted. Counts as success in the workflow's framing.</li>
+<li><b>TMLR / The Batch / No Priors / Cognitive Revolution / bycloud / Qwen feed</b> — recurring 404s, see prior runs; config maintenance still owed.</li>
+    </ul>
+    <p><b>Action hint:</b> The DeepSeek news endpoint changed paths — refresh `url:` in sources.yaml. The recurring stale-config 404s (TMLR, The Batch, No Priors, Cognitive Revolution, bycloud, Qwen feed) are the same set as yesterday — config maintenance still owed.</p>
+
+    <p class="muted" style="margin-top:22px;">Generated 2026-04-25 · 53 items ranked across 15 categories · Score = (impact + importance + popularity) / 3 with source-weight baseline nudge ≤ 0.05.</p>
+  </footer>
+</div>
+
+<script>
+(function() {
+  const items = Array.from(document.querySelectorAll('.item'));
+  const itemsContainer = document.getElementById('items');
+  const itemWraps = Array.from(document.querySelectorAll('.item-wrap'));
+  const totalCount = items.length;
+  const priorityCats = new Set();
+  const STORAGE_KEY = 'ai-digest-filters-v1';
+
+  function effectiveScore(el) {
+    const s = parseFloat(el.dataset.score);
+    return priorityCats.has(el.dataset.cat) ? Math.min(10, s + 1) : s;
+  }
+
+  const search = document.getElementById('search');
+  const minScore = document.getElementById('min-score');
+  const minScoreVal = document.getElementById('min-score-val');
+  const sortSel = document.getElementById('sort');
+  const onlyMulti = document.getElementById('only-multi');
+  const shownCount = document.getElementById('shown-count');
+  const activeFilters = document.getElementById('active-filters');
+  const noResults = document.getElementById('no-results');
+
+  const sourceTypeByName = {"TechCrunch AI": "magazine", "MIT Tech Review AI": "magazine", "Simon Willison": "blog", "Latent Space": "newsletter", "Stratechery": "newsletter", "Dwarkesh Podcast": "podcast", "Generally Intelligent": "podcast", "AI Explained": "youtube", "Defense One": "news", "Breaking Defense": "news", "DefenseScoop": "news", "FedScoop": "news", "C4ISRNET": "news", "War on the Rocks": "blog", "Lawfare": "news", "HN AI": "community", "arXiv": "arxiv", "HF Daily Papers": "aggregator", "Anthropic News": "blog"};
+  items.forEach(el => {
+    const chips = el.querySelectorAll('.src-chip');
+    const types = new Set();
+    chips.forEach(c => {
+      const nm = c.textContent.trim();
+      if (sourceTypeByName[nm]) types.add(sourceTypeByName[nm]);
+    });
+    if (types.size === 0) types.add('misc');
+    el.dataset.srctypes = Array.from(types).join(',');
+  });
+
+  function currentCatFilter() {
+    const on = new Set();
+    document.querySelectorAll('#cat-chips input').forEach(b => { if (b.checked) on.add(b.value); });
+    return on;
+  }
+  function currentSrcTypeFilter() {
+    const on = new Set();
+    document.querySelectorAll('#srctype-chips input').forEach(b => { if (b.checked) on.add(b.value); });
+    return on;
+  }
+
+  function persist() {
+    try {
+      const allCats = Array.from(document.querySelectorAll('#cat-chips input')).map(i=>i.value);
+      const checkedCats = new Set();
+      document.querySelectorAll('#cat-chips input').forEach(b=>{ if(b.checked) checkedCats.add(b.value); });
+      const uncheckedCats = allCats.filter(c => !checkedCats.has(c));
+
+      const allTypes = Array.from(document.querySelectorAll('#srctype-chips input')).map(i=>i.value);
+      const checkedTypes = new Set();
+      document.querySelectorAll('#srctype-chips input').forEach(b=>{ if(b.checked) checkedTypes.add(b.value); });
+      const uncheckedSrcTypes = allTypes.filter(t => !checkedTypes.has(t));
+
+      const state = {
+        uncheckedCats, uncheckedSrcTypes,
+        priorityCats: Array.from(priorityCats),
+        minScore: parseFloat(minScore.value),
+        onlyMulti: !!onlyMulti.checked,
+        sort: sortSel.value
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch(e) {}
+  }
+
+  function restore() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const s = JSON.parse(raw);
+      if (Array.isArray(s.uncheckedCats)) {
+        const off = new Set(s.uncheckedCats);
+        document.querySelectorAll('#cat-chips input').forEach(b=>{ b.checked = !off.has(b.value); });
+      }
+      if (Array.isArray(s.uncheckedSrcTypes)) {
+        const off = new Set(s.uncheckedSrcTypes);
+        document.querySelectorAll('#srctype-chips input').forEach(b=>{ b.checked = !off.has(b.value); });
+      }
+      if (Array.isArray(s.priorityCats)) {
+        s.priorityCats.forEach(c => priorityCats.add(c));
+        document.querySelectorAll('#cat-chips .cat-chip').forEach(label => {
+          const inp = label.querySelector('input');
+          if (priorityCats.has(inp.value)) label.classList.add('is-priority');
+        });
+      }
+      if (typeof s.minScore === 'number') minScore.value = s.minScore;
+      if (typeof s.onlyMulti === 'boolean') onlyMulti.checked = s.onlyMulti;
+      if (typeof s.sort === 'string') sortSel.value = s.sort;
+    } catch(e) {}
+  }
+
+  function apply() {
+    const q = (search.value || '').toLowerCase().trim();
+    const min = parseFloat(minScore.value);
+    minScoreVal.textContent = min.toFixed(1);
+    const cats = currentCatFilter();
+    const srcTypes = currentSrcTypeFilter();
+    const multiOnly = onlyMulti.checked;
+    let shown = 0;
+    items.forEach((el, idx) => {
+      const cat = el.dataset.cat;
+      el.classList.toggle('is-priority-cat', priorityCats.has(cat));
+      const score = effectiveScore(el);
+      const multi = el.dataset.multi === '1';
+      const txt = el.dataset.search;
+      const srctypes = (el.dataset.srctypes || '').split(',');
+      const srcTypeMatch = srctypes.some(t => srcTypes.has(t));
+      let hide = false;
+      if (score < min) hide = true;
+      if (!cats.has(cat)) hide = true;
+      if (!srcTypeMatch) hide = true;
+      if (multiOnly && !multi) hide = true;
+      if (q && !txt.includes(q)) hide = true;
+      const wrap = itemWraps[idx];
+      wrap.style.display = hide ? 'none' : '';
+      if (!hide) shown++;
+    });
+    shownCount.textContent = shown;
+    noResults.style.display = shown === 0 ? '' : 'none';
+    const parts = [];
+    if (min > 0) parts.push('≥' + min.toFixed(1));
+    const totalCats = document.querySelectorAll('#cat-chips input').length;
+    if (cats.size < totalCats) parts.push(cats.size + '/' + totalCats + ' cats');
+    if (multiOnly) parts.push('multi-only');
+    if (priorityCats.size) parts.push('★' + priorityCats.size);
+    activeFilters.textContent = parts.length ? '· ' + parts.join(' · ') : '';
+    persist();
+  }
+
+  function resort() {
+    const sortBy = sortSel.value;
+    const wraps = itemWraps.slice();
+    wraps.sort((a, b) => {
+      const ia = items[itemWraps.indexOf(a)];
+      const ib = items[itemWraps.indexOf(b)];
+      const sa = effectiveScore(ia), sb = effectiveScore(ib);
+      if (sortBy === 'score') return sb - sa;
+      if (sortBy === 'score-asc') return sa - sb;
+      if (sortBy === 'date') {
+        const da = ia.querySelector('.date')?.textContent || '';
+        const db = ib.querySelector('.date')?.textContent || '';
+        return db.localeCompare(da);
+      }
+      if (sortBy === 'multi') {
+        const ma = parseInt(ia.dataset.srccount || '1');
+        const mb = parseInt(ib.dataset.srccount || '1');
+        if (mb !== ma) return mb - ma;
+        return sb - sa;
+      }
+      return 0;
+    });
+    wraps.forEach(w => itemsContainer.appendChild(w));
+  }
+
+  search.addEventListener('input', apply);
+  minScore.addEventListener('input', apply);
+  sortSel.addEventListener('change', () => { resort(); apply(); });
+  onlyMulti.addEventListener('change', apply);
+  document.querySelectorAll('#cat-chips input, #srctype-chips input').forEach(b => b.addEventListener('change', apply));
+
+  document.querySelectorAll('#cat-chips .pri-toggle').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const slug = btn.dataset.cat;
+      const label = btn.closest('.cat-chip');
+      if (priorityCats.has(slug)) {
+        priorityCats.delete(slug);
+        label.classList.remove('is-priority');
+      } else {
+        priorityCats.add(slug);
+        label.classList.add('is-priority');
+      }
+      resort();
+      apply();
+    });
+  });
+
+  document.getElementById('all-cats').addEventListener('click', () => {
+    document.querySelectorAll('#cat-chips input').forEach(b => b.checked = true);
+    apply();
+  });
+  document.getElementById('no-cats').addEventListener('click', () => {
+    document.querySelectorAll('#cat-chips input').forEach(b => b.checked = false);
+    apply();
+  });
+  document.getElementById('reset-all').addEventListener('click', () => {
+    search.value = '';
+    minScore.value = 6.5;
+    onlyMulti.checked = false;
+    sortSel.value = 'score';
+    document.querySelectorAll('#cat-chips input').forEach(b => b.checked = true);
+    resort();
+    apply();
+  });
+
+  restore();
+  resort();
+  apply();
+})();
+
+// Audio player
+(function() {
+  const audio = document.getElementById('audio');
+  const btn   = document.getElementById('play-btn');
+  const cover = document.getElementById('cover-frame');
+  const state = document.getElementById('state-label');
+  if (!audio || !btn || !cover || !state) return;
+  btn.addEventListener('click', () => { if (audio.paused) audio.play(); else audio.pause(); });
+  audio.addEventListener('play', () => {
+    cover.classList.add('is-speaking'); btn.classList.add('playing');
+    document.body.classList.add('wolf-speaking');
+    btn.textContent = '⏸'; state.textContent = 'The wolf is speaking';
+  });
+  audio.addEventListener('pause', () => {
+    cover.classList.remove('is-speaking'); btn.classList.remove('playing');
+    document.body.classList.remove('wolf-speaking');
+    btn.textContent = '▶'; state.textContent = 'Press play to listen';
+  });
+  audio.addEventListener('ended', () => {
+    cover.classList.remove('is-speaking'); btn.classList.remove('playing');
+    document.body.classList.remove('wolf-speaking');
+    btn.textContent = '▶'; state.textContent = 'The wolf has finished';
+    setTimeout(() => { state.textContent = 'Press play to listen'; }, 2800);
+  });
+})();
+</script>
+
+<script>
+(function() {
+  document.querySelectorAll('.rank').forEach(el => {
+    el.title = 'Click to copy link to this story';
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const wrap = el.closest('.item-wrap');
+      if (!wrap || !wrap.id) return;
+      const url = `${location.origin}${location.pathname}#${wrap.id}`;
+      // Update URL bar in place (no scroll, no history entry)
+      history.replaceState(null, '', `#${wrap.id}`);
+      // Copy full URL to clipboard
+      const finish = () => {
+        const orig = el.textContent;
+        el.classList.add('just-copied');
+        el.textContent = '✓';
+        setTimeout(() => {
+          el.classList.remove('just-copied');
+          el.textContent = orig;
+        }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(finish, finish);
+      } else {
+        // Fallback for older browsers / non-secure contexts
+        const ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(_) {}
+        document.body.removeChild(ta);
+        finish();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
